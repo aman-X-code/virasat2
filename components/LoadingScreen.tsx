@@ -74,16 +74,8 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
       duration: 3,
       ease: "power2.inOut",
       onStart: () => {
-        if (lettersRef.current[6] && containerRef.current) {
-          const letterT = lettersRef.current[6];
-          const container = containerRef.current;
-          const letterRect = letterT.getBoundingClientRect();
-          const containerRect = container.getBoundingClientRect();
-          
-          const centerX = ((letterRect.left + letterRect.width / 2) - containerRect.left) / containerRect.width * 100;
-          const centerY = ((letterRect.top + letterRect.height / 2) - containerRect.top) / containerRect.height * 100;
-          
-          container.style.transformOrigin = `${centerX}% ${centerY}%`;
+        if (containerRef.current) {
+          containerRef.current.style.transformOrigin = '50% 50%';
         }
       },
       onUpdate: () => {

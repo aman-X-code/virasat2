@@ -3,6 +3,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import FAQSection from '@/components/FAQSection';
+import PartnersSection from '@/components/PartnersSection';
+import HighlightsSection from '@/components/HighlightsSection';
 
 const HomePage = () => {
   const fadeIn = {
@@ -72,7 +75,9 @@ const HomePage = () => {
         </motion.div>
       </section>
 
-      {/* Other sections will be added here */}
+      <FAQSection />
+      <PartnersSection />
+      <HighlightsSection />
     </div>
   );
 };
