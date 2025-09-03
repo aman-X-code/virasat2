@@ -3,6 +3,7 @@
 import './globals.css';
 import { Playfair_Display, Lato } from 'next/font/google';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import LoadingScreen from '@/components/LoadingScreen';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -37,11 +38,15 @@ export default function RootLayout({
         {loading ? (
           <LoadingScreen onLoadingComplete={handleLoadingComplete} />
         ) : (
-          <>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
             <Header />
             <main>{children}</main>
             <Footer />
-          </>
+          </motion.div>
         )}
       </body>
     </html>

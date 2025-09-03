@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
 interface LoadingScreenProps {
@@ -8,8 +8,6 @@ interface LoadingScreenProps {
 }
 
 export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps) {
-  const [isVisible, setIsVisible] = useState(true);
-
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const lettersRef = useRef<HTMLSpanElement[]>([]);
@@ -22,10 +20,7 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
 
     const tl = gsap.timeline({
       onComplete: () => {
-        setTimeout(() => {
-          setIsVisible(false);
-          onLoadingComplete?.();
-        }, 500);
+        onLoadingComplete?.();
       }
     });
 
@@ -117,8 +112,6 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
       tl.kill();
     };
   }, [onLoadingComplete]);
-
-  if (!isVisible) return null;
 
   const letters = "VIRASAT".split("");
 
