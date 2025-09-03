@@ -14,8 +14,10 @@ const HomePage = () => {
     <div className="bg-brand-white text-brand-black">
       {/* Hero Section */}
       <motion.section
-        className="min-h-screen bg-cover bg-center flex items-center justify-center text-center text-white"
-        style={{ backgroundImage: "url('/images/hero-bg.jpg')" }}
+        className="min-h-screen flex items-center justify-center text-center text-white"
+        style={{ 
+          background: 'linear-gradient(135deg, #1a1a1a 0%, #5a3e36 50%, #8b786d 100%)'
+        }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
