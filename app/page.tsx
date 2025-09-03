@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { ChevronDown } from 'lucide-react';
 import FAQSection from '@/components/FAQSection';
 import PartnersSection from '@/components/PartnersSection';
 import HighlightsSection from '@/components/HighlightsSection';
@@ -54,6 +55,20 @@ const HomePage = () => {
             </Link>
           </motion.div>
         </div>
+        <motion.div
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+        >
+          <span className="font-sans text-sm tracking-widest">SCROLL</span>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ChevronDown size={24} />
+          </motion.div>
+        </motion.div>
       </motion.section>
 
       {/* About Reach Preview */}
