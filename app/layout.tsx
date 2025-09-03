@@ -1,13 +1,25 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Playfair_Display, Lato } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair-display',
+});
+
+const lato = Lato({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-lato',
+});
 
 export const metadata: Metadata = {
   title: 'VIRASAT',
-  description: 'Professional website with custom loading screen',
+  description: 'A classy, cultural, and traditional website with a modern touch.',
 };
+
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export default function RootLayout({
   children,
@@ -16,8 +28,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        {children}
+      <body className={`${playfairDisplay.variable} ${lato.variable} font-sans bg-brand-white`}>
+        <Header />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
