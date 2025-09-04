@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
@@ -21,8 +22,21 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-brand-black bg-opacity-80 backdrop-blur-lg shadow-lg">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="text-3xl font-serif text-brand-white font-bold">
-          VIRASAT
+        <Link href="/" className="flex items-center space-x-4">
+          <Image
+            src="/images/reach.png"
+            alt="REACH Logo"
+            width={80}
+            height={50}
+            className="h-12 w-auto"
+          />
+          <Image
+            src="/images/vir.png"
+            alt="VIR Logo"
+            width={80}
+            height={50}
+            className="h-12 w-auto"
+          />
         </Link>
 
         {/* Desktop Navigation */}

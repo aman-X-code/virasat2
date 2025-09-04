@@ -38,7 +38,6 @@ export const HighlightsSection = () => {
     gsap.set(cards, { y: 50, opacity: 0 });
 
     ScrollTrigger.batch(cards, {
-      trigger: section,
       start: 'top 80%',
       onEnter: batch =>
         gsap.to(batch, {

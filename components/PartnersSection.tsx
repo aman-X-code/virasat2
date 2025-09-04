@@ -17,7 +17,7 @@ const partners = [
 export const PartnersSection = () => {
   const marqueeRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const tl = useRef<gsap.core.Timeline>();
+  const tl = useRef<gsap.core.Tween>();
 
   useEffect(() => {
     const marquee = marqueeRef.current;
@@ -42,8 +42,8 @@ export const PartnersSection = () => {
       repeat: -1,
     });
 
-    const handleMouseEnter = () => gsap.to(tl.current, { timeScale: 0.2, duration: 0.5 });
-    const handleMouseLeave = () => gsap.to(tl.current, { timeScale: 1, duration: 0.5 });
+    const handleMouseEnter = () => tl.current && gsap.to(tl.current, { timeScale: 0.2, duration: 0.5 });
+    const handleMouseLeave = () => tl.current && gsap.to(tl.current, { timeScale: 1, duration: 0.5 });
 
     wrapper.addEventListener('mouseenter', handleMouseEnter);
     wrapper.addEventListener('mouseleave', handleMouseLeave);
