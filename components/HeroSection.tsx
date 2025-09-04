@@ -19,36 +19,14 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="min-h-screen relative overflow-hidden">
-      {/* Black Background with Cultural Accents */}
-      <div 
+    <section className="min-h-screen relative overflow-hidden bg-black">
+      <div
         className="absolute inset-0 z-0"
         style={{
-          background: `
-            radial-gradient(ellipse at top left, rgba(255, 140, 0, 0.1) 0%, transparent 50%),
-            radial-gradient(ellipse at bottom right, rgba(255, 215, 0, 0.08) 0%, transparent 50%),
-            linear-gradient(135deg, 
-              #000000 0%, 
-              #0a0a0a 25%, 
-              #000000 50%, 
-              #0a0a0a 75%, 
-              #000000 100%
-            )
-          `
-        }}
-      />
-      
-      {/* Cultural Pattern Overlay */}
-      <div 
-        className="absolute inset-0 z-0 opacity-5"
-        style={{
-          backgroundImage: `
-            radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.1) 1px, transparent 1px),
-            radial-gradient(circle at 80% 80%, rgba(255, 140, 0, 0.1) 1px, transparent 1px),
-            radial-gradient(circle at 40% 60%, rgba(255, 69, 0, 0.1) 1px, transparent 1px),
-            radial-gradient(circle at 60% 40%, rgba(255, 165, 0, 0.1) 1px, transparent 1px)
-          `,
-          backgroundSize: '100px 100px, 150px 150px, 200px 200px, 120px 120px'
+          backgroundImage:
+            'radial-gradient(circle at 50% 50%, rgba(255, 140, 0, 0.1), transparent 70%), url("/images/background-pattern.svg")',
+          backgroundSize: 'cover, 300px 300px',
+          opacity: 0.3,
         }}
       />
       
@@ -269,105 +247,6 @@ const HeroSection = () => {
           />
         </motion.div>
       </motion.div>
-
-      {/* Enhanced Cultural Floating Elements */}
-      <motion.div
-        className="absolute top-20 left-10 w-8 h-8 bg-gradient-to-br from-amber-400 to-orange-600 rounded-full opacity-40 shadow-lg"
-        animate={{ 
-          y: [0, -20, 0],
-          x: [0, 8, 0],
-          rotate: [0, 180, 360]
-        }}
-        transition={{ 
-          duration: 6, 
-          repeat: Infinity, 
-          ease: "easeInOut" 
-        }}
-      />
-      <motion.div
-        className="absolute top-40 right-20 w-10 h-10 bg-gradient-to-br from-red-400 to-pink-600 rounded-full opacity-30 shadow-lg"
-        animate={{ 
-          y: [0, 15, 0],
-          scale: [1, 1.3, 1],
-          rotate: [0, -180, -360]
-        }}
-        transition={{ 
-          duration: 5, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          delay: 1
-        }}
-      />
-      <motion.div
-        className="absolute bottom-32 left-20 w-6 h-6 bg-gradient-to-br from-yellow-400 to-amber-600 rounded-full opacity-35 shadow-lg"
-        animate={{ 
-          y: [0, -12, 0],
-          x: [0, -5, 0],
-          rotate: [0, 90, 180, 270, 360]
-        }}
-        transition={{ 
-          duration: 4, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          delay: 0.7
-        }}
-      />
-      <motion.div
-        className="absolute top-1/2 right-10 w-5 h-5 bg-gradient-to-br from-orange-400 to-red-500 rounded-full opacity-45 shadow-lg"
-        animate={{ 
-          y: [0, -18, 0],
-          scale: [1, 1.4, 1],
-          rotate: [0, -90, -180, -270, -360]
-        }}
-        transition={{ 
-          duration: 4.5, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          delay: 1.5
-        }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-32 w-9 h-9 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-full opacity-25 shadow-lg"
-        animate={{ 
-          y: [0, 12, 0],
-          x: [0, -6, 0],
-          rotate: [0, 120, 240, 360]
-        }}
-        transition={{ 
-          duration: 3.8, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          delay: 0.3
-        }}
-      />
-      
-      {/* Additional Cultural Accent Elements */}
-      <motion.div
-        className="absolute top-1/3 left-1/4 w-3 h-3 bg-gradient-to-br from-saffron-400 to-orange-500 rounded-full opacity-50"
-        animate={{ 
-          y: [0, -8, 0],
-          opacity: [0.3, 0.7, 0.3]
-        }}
-        transition={{ 
-          duration: 3, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          delay: 2
-        }}
-      />
-      <motion.div
-        className="absolute bottom-1/3 right-1/4 w-4 h-4 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full opacity-40"
-        animate={{ 
-          y: [0, 10, 0],
-          opacity: [0.2, 0.6, 0.2]
-        }}
-        transition={{ 
-          duration: 3.5, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          delay: 2.5
-        }}
-      />
     </section>
   );
 };

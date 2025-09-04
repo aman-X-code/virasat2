@@ -7,6 +7,7 @@ import HeroSection from '@/components/HeroSection';
 import FAQSection from '@/components/FAQSection';
 import PartnersSection from '@/components/PartnersSection';
 import HighlightsSection from '@/components/HighlightsSection';
+import ArtistSection from '@/components/ArtistSection';
 
 const HomePage = () => {
   const fadeIn = {
@@ -27,15 +28,17 @@ const HomePage = () => {
           variants={fadeIn}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl font-serif text-brand-brown mb-4">About Reach</h2>
+          <h2 className="text-4xl font-serif text-brand-brown mb-4">About Virasat by Reach</h2>
           <p className="text-lg font-sans text-brand-earthen mb-8">
-            Virasat is not just an event; it's a movement to preserve and celebrate our rich cultural heritage. We aim to connect the past with the present, creating a legacy for the future.
+            Reach is the organization behind Virasat, an event that is not just a festival, but a movement to preserve and celebrate our rich cultural heritage. We aim to connect the past with the present, creating a legacy for the future.
           </p>
           <Link href="/about" className="text-brand-red font-semibold hover:underline">
             Learn More &rarr;
           </Link>
         </motion.div>
       </section>
+
+      <ArtistSection />
 
       <FAQSection />
       <PartnersSection />
