@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { CardCarousel } from '@/components/ui/card-carousel';
+import AnimatedArtistBackground from './AnimatedArtistBackground';
 
 const ArtistSection = () => {
   const artists = [
@@ -40,7 +41,8 @@ const ArtistSection = () => {
   };
 
   return (
-    <section className="py-20 px-6 container mx-auto artist-section-bg">
+    <section className="py-20 px-6 container mx-auto relative">
+      <AnimatedArtistBackground />
       <motion.div
         className="text-center max-w-3xl mx-auto"
         initial="initial"
