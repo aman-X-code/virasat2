@@ -16,11 +16,11 @@ const HomePage = () => {
   };
 
   return (
-    <div className="bg-brand-white text-brand-black">
+    <div className="text-brand-black">
       <HeroSection />
 
       {/* About Reach Preview */}
-      <section className="py-20 px-6 container mx-auto">
+      <section className="py-20 px-6 container mx-auto bg-brand-white">
         <motion.div
           className="text-center max-w-3xl mx-auto"
           initial="initial"
