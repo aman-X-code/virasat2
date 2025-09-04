@@ -40,7 +40,7 @@ const ArtistSection = () => {
   };
 
   return (
-    <section className="py-20 px-6 container mx-auto">
+    <section className="py-20 px-6 container mx-auto artist-section-bg">
       <motion.div
         className="text-center max-w-3xl mx-auto"
         initial="initial"
