@@ -59,16 +59,11 @@ export const CardCarousel: React.FC<CarouselProps> = ({
   }
   `
   return (
-    <section className="w-ace-y-4">
+    <section>
       <style>{css}</style>
-      <div className="mx-auto w-full max-w-4xl rounded-[24px] p-2 shadow-sm md:rounded-t-[44px]">
-        <div className="relative mx-auto flex w-full flex-col rounded-[24px] bg-neutral-800/5 p-2 shadow-sm md:items-start md:gap-8 md:rounded-b-[20px] md:rounded-t-[40px] md:p-2">
-
-
-          <div className="flex w-full items-center justify-center gap-4">
-            <div className="w-full">
-              <Swiper
-                spaceBetween={50}
+      <div className="mx-auto max-w-4xl">
+        <Swiper
+          spaceBetween={50}
                 autoplay={{
                   delay: autoplayDelay,
                   disableOnInteraction: false,
@@ -109,9 +104,6 @@ export const CardCarousel: React.FC<CarouselProps> = ({
                   </SwiperSlide>
                 ))}
               </Swiper>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   )
