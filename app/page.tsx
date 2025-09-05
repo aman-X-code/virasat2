@@ -7,7 +7,7 @@ import HeroSection from '@/components/HeroSection';
 import FAQSection from '@/components/FAQSection';
 import PartnersSection from '@/components/PartnersSection';
 import HighlightsSection from '@/components/HighlightsSection';
-import ArtistSection from '@/components/ArtistSection';
+import ParallaxArtistSection from '@/components/ParallaxArtistSection';
 
 const HomePage = () => {
   const fadeIn = {
@@ -38,7 +38,7 @@ const HomePage = () => {
         </motion.div>
       </section>
 
-      <ArtistSection />
+      <ParallaxArtistSection />
 
       <PartnersSection />
       <HighlightsSection />
