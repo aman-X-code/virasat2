@@ -40,9 +40,9 @@ const HomePage = () => {
 
       <ArtistSection />
 
-      <FAQSection />
       <PartnersSection />
       <HighlightsSection />
+      <FAQSection />
     </div>
   );
 };

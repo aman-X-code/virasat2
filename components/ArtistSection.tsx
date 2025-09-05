@@ -29,7 +29,7 @@ const ArtistSection = () => {
       name: 'Shubha Mudgal',
     },
     {
-        src: '/images/artists/birju_maharaj.jpg',
+        src: '/images/artists/birju_maharaj.png',
         alt: 'Birju Maharaj',
         name: 'Birju Maharaj',
     },
