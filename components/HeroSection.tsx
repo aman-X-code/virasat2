@@ -91,6 +91,8 @@ const HeroSection = () => {
                 loop
                 muted
                 playsInline
+                preload="auto"
+                poster="/images/second-poster.jpg"
               >
                 <source src="/images/second.mp4" type="video/mp4" />
                 <source src="/loader.mp4" type="video/mp4" />

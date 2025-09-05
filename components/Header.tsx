@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -18,10 +18,30 @@ const navItems = [
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const pathname = usePathname();
 
+  useEffect(() => {
+    // Listen for custom events to hide/show header
+    const handleHideHeader = () => setIsHeaderVisible(false);
+    const handleShowHeader = () => setIsHeaderVisible(true);
+
+    window.addEventListener('hideHeader', handleHideHeader);
+    window.addEventListener('showHeader', handleShowHeader);
+
+    return () => {
+      window.removeEventListener('hideHeader', handleHideHeader);
+      window.removeEventListener('showHeader', handleShowHeader);
+    };
+  }, []);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-brand-black bg-opacity-80 backdrop-blur-lg shadow-lg">
+    <motion.header 
+      className="fixed top-0 left-0 right-0 z-50 bg-brand-black bg-opacity-80 backdrop-blur-lg shadow-lg"
+      initial={{ y: 0 }}
+      animate={{ y: isHeaderVisible ? 0 : -100 }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
+    >
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-4">
@@ -126,7 +146,7 @@ const Header = () => {
           </ul>
         </motion.nav>
       )}
-    </header>
+    </motion.header>
   );
 };
 
