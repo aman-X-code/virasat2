@@ -52,16 +52,16 @@ const FlowingSilkBackground = () => {
   }, []);
 
   return (
-    <div className="absolute inset-0 -z-10 overflow-hidden bg-gray-900">
+    <div className="absolute inset-0 -z-10 overflow-hidden" style={{ backgroundColor: '#1a1a1a' }}>
       <svg ref={svgRef} className="w-full h-full">
         <defs>
           <radialGradient id="silkGradient1" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="rgba(74, 20, 140, 0.3)" />
-            <stop offset="100%" stopColor="rgba(13, 71, 161, 0.3)" />
+            <stop offset="0%" stopColor="rgba(192, 57, 43, 0.3)" />
+            <stop offset="100%" stopColor="rgba(90, 62, 54, 0.3)" />
           </radialGradient>
           <radialGradient id="silkGradient2" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="rgba(106, 27, 154, 0.3)" />
-            <stop offset="100%" stopColor="rgba(21, 101, 192, 0.3)" />
+            <stop offset="0%" stopColor="rgba(139, 120, 109, 0.3)" />
+            <stop offset="100%" stopColor="rgba(90, 62, 54, 0.3)" />
           </radialGradient>
           <filter id="blur">
             <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
