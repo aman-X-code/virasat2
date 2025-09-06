@@ -5,6 +5,7 @@ import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import FloatingOrbs from "./FloatingOrbs"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -316,64 +317,14 @@ const ParallaxArtistSection = () => {
 
   return (
     <section ref={containerRef} className="relative overflow-hidden will-change-transform" style={{ height: "100vh" }}>
-      {/* Creative Multi-Layer Background with Earthen Theme */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Base Gradient - Updated to earthen brown, black, and white */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle at 20% 30%, #5a3e36 0%, transparent 50%), radial-gradient(circle at 80% 70%, #8b786d 0%, transparent 50%), linear-gradient(45deg, #1a1a1a 0%, #5a3e36 25%, #8b786d 50%, #f5f5f5 75%, #1a1a1a 100%)",
-          }}
-        ></div>
-
-
-
-        {/* Geometric Shapes - Updated colors */}
-        <div className="absolute inset-0 opacity-15 pointer-events-none">
-          <div
-            className="absolute top-10 left-10 w-32 h-32 rounded-full pointer-events-none"
-            style={{ background: "linear-gradient(45deg, #5a3e36, #8b786d)" }}
-          ></div>
-          <div
-            className="absolute top-1/3 right-20 w-24 h-24 transform rotate-45 pointer-events-none"
-            style={{ background: "#f5f5f5" }}
-          ></div>
-          <div
-            className="absolute bottom-20 left-1/4 w-40 h-40 rounded-full pointer-events-none"
-            style={{ background: "radial-gradient(circle, #8b786d 30%, transparent 70%)" }}
-          ></div>
-          <div
-            className="absolute bottom-1/3 right-10 w-16 h-16 transform rotate-12 pointer-events-none"
-            style={{ background: "#5a3e36" }}
-          ></div>
-        </div>
-
-        {/* Flowing Lines - Updated colors */}
-        <div className="absolute inset-0 opacity-25 pointer-events-none">
-          <svg className="w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path d="M0,20 Q25,10 50,20 T100,15 L100,25 Q75,35 50,25 T0,30 Z" fill="url(#earthenGradient)" />
-            <path d="M0,60 Q25,50 50,60 T100,55 L100,65 Q75,75 50,65 T0,70 Z" fill="url(#brownGradient)" />
-            <defs>
-              <linearGradient id="earthenGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#5a3e36" stopOpacity="0.6" />
-                <stop offset="100%" stopColor="#8b786d" stopOpacity="0.3" />
-              </linearGradient>
-              <linearGradient id="brownGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#8b786d" stopOpacity="0.4" />
-                <stop offset="100%" stopColor="#f5f5f5" stopOpacity="0.2" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-
-        {/* Texture Overlay - Updated color */}
-        <div
-          className="absolute inset-0 opacity-8 pointer-events-none"
-          style={{
-            background: "repeating-linear-gradient(45deg, transparent, transparent 2px, #5a3e36 2px, #5a3e36 4px)",
-          }}
-        ></div>
+      {/* New Background */}
+      <div
+        className="absolute inset-0 -z-10"
+        style={{
+          background: 'radial-gradient(ellipse at 50% 50%, #1c1c1c, #0a0a0a)',
+        }}
+      >
+        <FloatingOrbs />
       </div>
 
       {/* Background Pattern */}
