@@ -433,13 +433,10 @@ const ParallaxArtistSection = () => {
       </div>
 
       {/* Section Title - Fixed with better mobile positioning */}
-      <div className="absolute top-4 md:top-8 left-4 md:left-8 right-4 md:right-auto z-20 bg-black/40 backdrop-blur-sm rounded-lg p-3 md:p-4 md:bg-transparent md:backdrop-blur-none">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-serif text-brand-white mb-1 md:mb-2 leading-tight">
+      <div className="absolute top-4 md:top-8 left-1/2 transform -translate-x-1/2 z-20 md:bg-transparent md:backdrop-blur-none">
+        <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-6xl font-serif text-brand-white mb-1 md:mb-2 leading-tight whitespace-nowrap">
           Our Esteemed Artists
         </h2>
-        <p className="text-xs sm:text-sm md:text-base lg:text-lg text-brand-earthen-light max-w-xs sm:max-w-sm md:max-w-md">
-          Masters who have shaped the cultural landscape through their extraordinary talent and dedication.
-        </p>
       </div>
 
       <div className="absolute bottom-4 md:bottom-8 right-4 md:right-8 z-10 text-brand-white opacity-70">
@@ -560,16 +557,16 @@ const ParallaxArtistSection = () => {
                       }}
                     ></div>
                     <div className="relative z-10 p-4 md:p-6">
-                      <h3 className="artist-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif text-brand-white mb-2 leading-tight">
+                      <h3 className="artist-title text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-serif text-brand-white mb-2 leading-tight">
                         {artist.name}
                       </h3>
-                      <h4 className="artist-subtitle text-base sm:text-lg md:text-xl lg:text-2xl text-brand-earthen font-semibold mb-3 md:mb-4">
+                      <h4 className="artist-subtitle text-lg sm:text-xl md:text-xl lg:text-2xl text-brand-earthen font-semibold mb-3 md:mb-4">
                         {artist.title}
                       </h4>
-                      <p className="artist-description text-xs sm:text-sm md:text-base lg:text-lg text-brand-earthen-light leading-relaxed mb-4 md:mb-6">
+                      <p className="artist-description text-sm sm:text-base md:text-base lg:text-lg text-brand-earthen-light leading-relaxed mb-4 md:mb-6">
                         {artist.description}
                       </p>
-                      <div className="artist-specialty space-y-1 md:space-y-2 text-xs sm:text-sm md:text-base">
+                      <div className="artist-specialty space-y-1 md:space-y-2 text-sm sm:text-base md:text-base">
                         <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-2 md:space-x-4">
                           <span className="text-brand-white font-semibold">Specialty:</span>
                           <span className="text-brand-earthen-light">{artist.specialty}</span>
