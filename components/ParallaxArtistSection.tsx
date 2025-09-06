@@ -5,7 +5,7 @@ import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import FloatingOrbs from "./FloatingOrbs"
+import FlowingSilkBackground from "./FlowingSilkBackground"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -317,15 +317,7 @@ const ParallaxArtistSection = () => {
 
   return (
     <section ref={containerRef} className="relative overflow-hidden will-change-transform" style={{ height: "100vh" }}>
-      {/* New Background */}
-      <div
-        className="absolute inset-0 -z-10"
-        style={{
-          background: 'radial-gradient(ellipse at 50% 50%, #1c1c1c, #0a0a0a)',
-        }}
-      >
-        <FloatingOrbs />
-      </div>
+      <FlowingSilkBackground />
 
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10 will-change-transform">
