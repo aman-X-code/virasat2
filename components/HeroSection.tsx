@@ -1,9 +1,29 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import HeroCarousel from './HeroCarousel';
+
+const useIsMobile = (breakpoint = 1024) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < breakpoint);
+    };
+
+    // Set initial value
+    checkScreenSize();
+
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, [breakpoint]);
+
+  return isMobile;
+};
 
 const HeroSection = () => {
+  const isMobile = useIsMobile();
   const gridItems = [
     {
       id: 1,
@@ -32,7 +52,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="min-h-screen relative overflow-hidden bg-black">
+    <section data-testid="hero-section" className="min-h-screen relative overflow-hidden bg-black">
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -46,8 +66,43 @@ const HeroSection = () => {
       {/* Bento Grid Container */}
       <div className="relative z-10 w-full h-screen p-4 sm:p-6 lg:p-8 flex items-center justify-center">
         <div className="w-full max-w-6xl mx-auto">
-          <motion.div
-            className="grid grid-cols-4 grid-rows-2 gap-4 h-[80vh] max-h-[800px] w-full mt-16"
+          {isMobile ? (
+            <div className="relative w-full h-[80vh] max-h-[800px] mt-16">
+              <HeroCarousel items={gridItems} />
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 pointer-events-none">
+                <motion.h1
+                  className="text-6xl font-bold bg-gradient-to-r from-orange-400 via-amber-300 to-red-400 bg-clip-text text-transparent leading-tight mb-2"
+                  style={{
+                    fontFamily: 'var(--font-cinzel), "Cinzel", "Playfair Display", serif',
+                    backgroundSize: '200% 200%',
+                    fontWeight: '600',
+                    letterSpacing: '0.08em',
+                    textTransform: 'uppercase'
+                  }}
+                  animate={{
+                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                >
+                  Virasat
+                </motion.h1>
+                <motion.p
+                  className="text-xl text-white/90 font-light"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: 0.5 }}
+                >
+                  Heritage in the Hills
+                </motion.p>
+              </div>
+            </div>
+          ) : (
+            <motion.div
+              className="grid grid-cols-1 lg:grid-cols-4 grid-rows-2 gap-4 h-[80vh] max-h-[800px] w-full mt-16"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.1 }}
@@ -60,6 +115,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: item.delay }}
+                whileHover={{ scale: 1.05, rotateX: 10, rotateY: 10 }}
               >
                 <video
                   className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
@@ -120,7 +176,7 @@ const HeroSection = () => {
                 transition={{ duration: 1, delay: 1.5 }}
               >
                 <motion.h1
-                  className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-orange-400 via-amber-300 to-red-400 bg-clip-text text-transparent leading-tight mb-2"
+                  className="text-5xl sm:text-6xl md:text-8xl font-bold bg-gradient-to-r from-orange-400 via-amber-300 to-red-400 bg-clip-text text-transparent leading-tight mb-2"
                   style={{
                     fontFamily: 'var(--font-cinzel), "Cinzel", "Playfair Display", serif',
                     backgroundSize: '200% 200%',
@@ -141,7 +197,7 @@ const HeroSection = () => {
                 </motion.h1>
                 
                 <motion.p
-                  className="text-xl md:text-2xl text-white/90 font-light"
+                  className="text-lg sm:text-xl md:text-2xl text-white/90 font-light"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 1, delay: 2 }}
@@ -224,6 +280,7 @@ const HeroSection = () => {
               />
             </motion.div>
           </motion.div>
+          )}
         </div>
       </div>
 
