@@ -316,60 +316,62 @@ const ParallaxArtistSection = () => {
 
   return (
     <section ref={containerRef} className="relative overflow-hidden will-change-transform" style={{ height: "100vh" }}>
-      {/* Creative Multi-Layer Background */}
+      {/* Creative Multi-Layer Background with Earthen Theme */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Base Gradient */}
+        {/* Base Gradient - Updated to earthen brown, black, and white */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle at 20% 30%, #710016 0%, transparent 50%), radial-gradient(circle at 80% 70%, #B8967F 0%, transparent 50%), linear-gradient(45deg, #161616 0%, #710016 25%, #B8967F 50%, #F2F1ED 75%, #161616 100%)",
+              "radial-gradient(circle at 20% 30%, #5a3e36 0%, transparent 50%), radial-gradient(circle at 80% 70%, #8b786d 0%, transparent 50%), linear-gradient(45deg, #1a1a1a 0%, #5a3e36 25%, #8b786d 50%, #f5f5f5 75%, #1a1a1a 100%)",
           }}
         ></div>
 
-        {/* Geometric Shapes */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
+
+
+        {/* Geometric Shapes - Updated colors */}
+        <div className="absolute inset-0 opacity-15 pointer-events-none">
           <div
             className="absolute top-10 left-10 w-32 h-32 rounded-full pointer-events-none"
-            style={{ background: "linear-gradient(45deg, #710016, #B8967F)" }}
+            style={{ background: "linear-gradient(45deg, #5a3e36, #8b786d)" }}
           ></div>
           <div
             className="absolute top-1/3 right-20 w-24 h-24 transform rotate-45 pointer-events-none"
-            style={{ background: "#F2F1ED" }}
+            style={{ background: "#f5f5f5" }}
           ></div>
           <div
             className="absolute bottom-20 left-1/4 w-40 h-40 rounded-full pointer-events-none"
-            style={{ background: "radial-gradient(circle, #B8967F 30%, transparent 70%)" }}
+            style={{ background: "radial-gradient(circle, #8b786d 30%, transparent 70%)" }}
           ></div>
           <div
             className="absolute bottom-1/3 right-10 w-16 h-16 transform rotate-12 pointer-events-none"
-            style={{ background: "#710016" }}
+            style={{ background: "#5a3e36" }}
           ></div>
         </div>
 
-        {/* Flowing Lines */}
-        <div className="absolute inset-0 opacity-30 pointer-events-none">
+        {/* Flowing Lines - Updated colors */}
+        <div className="absolute inset-0 opacity-25 pointer-events-none">
           <svg className="w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path d="M0,20 Q25,10 50,20 T100,15 L100,25 Q75,35 50,25 T0,30 Z" fill="url(#crimsonGradient)" />
-            <path d="M0,60 Q25,50 50,60 T100,55 L100,65 Q75,75 50,65 T0,70 Z" fill="url(#sandGradient)" />
+            <path d="M0,20 Q25,10 50,20 T100,15 L100,25 Q75,35 50,25 T0,30 Z" fill="url(#earthenGradient)" />
+            <path d="M0,60 Q25,50 50,60 T100,55 L100,65 Q75,75 50,65 T0,70 Z" fill="url(#brownGradient)" />
             <defs>
-              <linearGradient id="crimsonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#710016" stopOpacity="0.6" />
-                <stop offset="100%" stopColor="#B8967F" stopOpacity="0.3" />
+              <linearGradient id="earthenGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#5a3e36" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="#8b786d" stopOpacity="0.3" />
               </linearGradient>
-              <linearGradient id="sandGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#B8967F" stopOpacity="0.4" />
-                <stop offset="100%" stopColor="#F2F1ED" stopOpacity="0.2" />
+              <linearGradient id="brownGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#8b786d" stopOpacity="0.4" />
+                <stop offset="100%" stopColor="#f5f5f5" stopOpacity="0.2" />
               </linearGradient>
             </defs>
           </svg>
         </div>
 
-        {/* Texture Overlay */}
+        {/* Texture Overlay - Updated color */}
         <div
-          className="absolute inset-0 opacity-10 pointer-events-none"
+          className="absolute inset-0 opacity-8 pointer-events-none"
           style={{
-            background: "repeating-linear-gradient(45deg, transparent, transparent 2px, #710016 2px, #710016 4px)",
+            background: "repeating-linear-gradient(45deg, transparent, transparent 2px, #5a3e36 2px, #5a3e36 4px)",
           }}
         ></div>
       </div>
@@ -386,12 +388,113 @@ const ParallaxArtistSection = () => {
         />
       </div>
 
-      {/* Section Title - Fixed */}
-      <div className="absolute top-4 md:top-8 left-4 md:left-8 z-10">
-        <h2 className="text-3xl md:text-4xl lg:text-6xl font-serif text-brand-white mb-2 leading-tight">
+      {/* Floating Indian Lanterns (Diyas/Kandils) - Repositioned for mobile */}
+      <div className="absolute inset-0 z-5 pointer-events-none">
+        {/* Large Kandil - Top Left - Hidden on small screens to avoid collision */}
+        <div className="hidden sm:block absolute top-16 left-16 w-16 h-20 animate-bounce" style={{ animationDuration: '4s', animationDelay: '0s' }}>
+          <div className="relative w-full h-full">
+            {/* Kandil Body - Bulbous shape */}
+            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gradient-to-b from-orange-400 via-yellow-500 to-orange-600 rounded-full opacity-90 shadow-lg"></div>
+            {/* Kandil Top - Narrow neck */}
+            <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 w-4 h-6 bg-gradient-to-b from-brand-brown to-brand-earthen rounded-t-full shadow-md"></div>
+            {/* Hanging Chain */}
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-4 bg-gradient-to-b from-yellow-600 to-yellow-800 shadow-sm"></div>
+            {/* Inner Flame */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-2 h-4 bg-gradient-to-t from-yellow-300 to-orange-200 rounded-full opacity-95 animate-pulse shadow-md"></div>
+            {/* Decorative Pattern */}
+            <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-gradient-to-r from-transparent via-red-400 to-transparent opacity-70"></div>
+          </div>
+        </div>
+
+        {/* Medium Diya - Top Right - Repositioned for mobile */}
+        <div className="absolute top-20 sm:top-32 right-4 sm:right-24 w-8 sm:w-12 h-6 sm:h-8 animate-bounce" style={{ animationDuration: '3.5s', animationDelay: '1s' }}>
+          <div className="relative w-full h-full">
+            {/* Diya Bowl */}
+            <div className="absolute bottom-0 left-0 w-full h-6 bg-gradient-to-b from-yellow-600 to-orange-700 rounded-full opacity-85 shadow-lg"></div>
+            {/* Diya Spout */}
+            <div className="absolute bottom-1 right-0 w-3 h-2 bg-gradient-to-r from-orange-700 to-red-600 rounded-r-full shadow-md"></div>
+            {/* Flame */}
+            <div className="absolute -top-1 right-1 w-1.5 h-3 bg-gradient-to-t from-orange-400 to-yellow-200 rounded-full animate-pulse shadow-md"></div>
+            {/* Oil Glow */}
+            <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-6 h-2 bg-gradient-to-r from-transparent via-yellow-400 to-transparent opacity-60"></div>
+          </div>
+        </div>
+
+        {/* Small Kandil - Middle Left - Repositioned for mobile */}
+        <div className="absolute top-1/2 left-2 sm:left-8 w-6 sm:w-10 h-8 sm:h-14 animate-bounce" style={{ animationDuration: '3s', animationDelay: '2s' }}>
+          <div className="relative w-full h-full">
+            {/* Kandil Body */}
+            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-gradient-to-b from-orange-300 via-yellow-400 to-orange-500 rounded-full opacity-80 shadow-lg"></div>
+            {/* Kandil Top */}
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-3 h-4 bg-gradient-to-b from-brand-brown to-brand-earthen rounded-t-full shadow-md"></div>
+            {/* Chain */}
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-3 bg-yellow-700 shadow-sm"></div>
+            {/* Flame */}
+            <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-1.5 h-3 bg-gradient-to-t from-yellow-300 to-orange-200 rounded-full animate-pulse shadow-md"></div>
+          </div>
+        </div>
+
+        {/* Medium Diya - Bottom Right */}
+        <div className="absolute bottom-24 right-16 w-14 h-9 animate-bounce" style={{ animationDuration: '4.5s', animationDelay: '0.5s' }}>
+          <div className="relative w-full h-full">
+            {/* Diya Bowl */}
+            <div className="absolute bottom-0 left-0 w-full h-7 bg-gradient-to-b from-yellow-500 to-orange-600 rounded-full opacity-90 shadow-lg"></div>
+            {/* Diya Spout */}
+            <div className="absolute bottom-1 right-0 w-4 h-3 bg-gradient-to-r from-orange-600 to-red-500 rounded-r-full shadow-md"></div>
+            {/* Flame */}
+            <div className="absolute -top-2 right-1 w-2 h-4 bg-gradient-to-t from-orange-400 to-yellow-200 rounded-full animate-pulse shadow-md"></div>
+            {/* Decorative Dots */}
+            <div className="absolute bottom-2 left-2 w-1 h-1 bg-red-400 rounded-full opacity-80 shadow-sm"></div>
+            <div className="absolute bottom-3 left-4 w-1 h-1 bg-red-400 rounded-full opacity-80 shadow-sm"></div>
+            <div className="absolute bottom-2 left-6 w-1 h-1 bg-red-400 rounded-full opacity-80 shadow-sm"></div>
+          </div>
+        </div>
+
+        {/* Small Diya - Bottom Left */}
+        <div className="absolute bottom-32 left-32 w-8 h-6 animate-bounce" style={{ animationDuration: '3.2s', animationDelay: '1.5s' }}>
+          <div className="relative w-full h-full">
+            {/* Diya Bowl */}
+            <div className="absolute bottom-0 left-0 w-full h-4 bg-gradient-to-b from-yellow-400 to-orange-500 rounded-full opacity-75 shadow-lg"></div>
+            {/* Diya Spout */}
+            <div className="absolute bottom-0.5 right-0 w-2 h-1.5 bg-gradient-to-r from-orange-500 to-red-400 rounded-r-full shadow-md"></div>
+            {/* Flame */}
+            <div className="absolute -top-1 right-0.5 w-1 h-2.5 bg-gradient-to-t from-orange-300 to-yellow-200 rounded-full animate-pulse shadow-md"></div>
+          </div>
+        </div>
+
+        {/* Tiny Kandil - Center Right */}
+        <div className="absolute top-2/3 right-32 w-8 h-10 animate-bounce" style={{ animationDuration: '2.8s', animationDelay: '2.5s' }}>
+          <div className="relative w-full h-full">
+            {/* Kandil Body */}
+            <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-b from-orange-300 via-yellow-400 to-orange-500 rounded-full opacity-70 shadow-lg"></div>
+            {/* Kandil Top */}
+            <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 w-2 h-3 bg-gradient-to-b from-brand-brown to-brand-earthen rounded-t-full shadow-md"></div>
+            {/* Chain */}
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-2 bg-yellow-700 shadow-sm"></div>
+            {/* Flame */}
+            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-1 h-2 bg-gradient-to-t from-yellow-300 to-orange-200 rounded-full animate-pulse shadow-md"></div>
+          </div>
+        </div>
+
+        {/* Additional Small Diya - Top Center */}
+        <div className="absolute top-20 left-1/2 transform -translate-x-1/2 w-10 h-7 animate-bounce" style={{ animationDuration: '3.8s', animationDelay: '3s' }}>
+          <div className="relative w-full h-full">
+            {/* Diya Bowl */}
+            <div className="absolute bottom-0 left-0 w-full h-5 bg-gradient-to-b from-yellow-500 to-orange-600 rounded-full opacity-80 shadow-lg"></div>
+            {/* Diya Spout */}
+            <div className="absolute bottom-1 right-0 w-3 h-2 bg-gradient-to-r from-orange-600 to-red-500 rounded-r-full shadow-md"></div>
+            {/* Flame */}
+            <div className="absolute -top-1 right-1 w-1.5 h-3 bg-gradient-to-t from-orange-400 to-yellow-200 rounded-full animate-pulse shadow-md"></div>
+          </div>
+        </div>
+      </div>
+
+      {/* Section Title - Fixed with better mobile positioning */}
+      <div className="absolute top-4 md:top-8 left-4 md:left-8 right-4 md:right-auto z-20 bg-black/40 backdrop-blur-sm rounded-lg p-3 md:p-4 md:bg-transparent md:backdrop-blur-none">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-serif text-brand-white mb-1 md:mb-2 leading-tight">
           Our Esteemed Artists
         </h2>
-        <p className="text-sm md:text-base lg:text-lg text-brand-earthen-light max-w-xs md:max-w-md">
+        <p className="text-xs sm:text-sm md:text-base lg:text-lg text-brand-earthen-light max-w-xs sm:max-w-sm md:max-w-md">
           Masters who have shaped the cultural landscape through their extraordinary talent and dedication.
         </p>
       </div>
@@ -402,9 +505,9 @@ const ParallaxArtistSection = () => {
             {currentArtist < 3 ? "Scroll to explore" : "Use arrows to navigate"}
           </span>
           <div className="flex space-x-1">
-            <div className="w-2 h-2 bg-brand-red rounded-full animate-pulse"></div>
-            <div className="w-2 h-2 bg-brand-red rounded-full animate-pulse" style={{ animationDelay: "0.2s" }}></div>
-            <div className="w-2 h-2 bg-brand-red rounded-full animate-pulse" style={{ animationDelay: "0.4s" }}></div>
+            <div className="w-2 h-2 bg-brand-earthen rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-brand-earthen rounded-full animate-pulse" style={{ animationDelay: "0.2s" }}></div>
+            <div className="w-2 h-2 bg-brand-earthen rounded-full animate-pulse" style={{ animationDelay: "0.4s" }}></div>
           </div>
         </div>
       </div>
@@ -415,7 +518,7 @@ const ParallaxArtistSection = () => {
           {currentArtist > 2 && (
             <button
               onClick={goToPrevArtist}
-              className="absolute left-4 md:left-8 top-1/2 transform -translate-y-1/2 z-20 bg-brand-red/80 hover:bg-brand-red text-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+              className="absolute left-4 md:left-8 top-1/2 transform -translate-y-1/2 z-20 bg-brand-brown/80 hover:bg-brand-brown text-brand-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-brand-earthen/30"
               aria-label="Previous artist"
             >
               <ChevronLeft size={24} />
@@ -426,7 +529,7 @@ const ParallaxArtistSection = () => {
           {currentArtist < artists.length - 1 && (
             <button
               onClick={goToNextArtist}
-              className="absolute right-4 md:right-8 top-1/2 transform -translate-y-1/2 z-20 bg-brand-red/80 hover:bg-brand-red text-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+              className="absolute right-4 md:right-8 top-1/2 transform -translate-y-1/2 z-20 bg-brand-brown/80 hover:bg-brand-brown text-brand-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-brand-earthen/30"
               aria-label="Next artist"
             >
               <ChevronRight size={24} />
@@ -504,20 +607,20 @@ const ParallaxArtistSection = () => {
                 {/* Artist Content */}
                 <div className="w-full md:w-1/2 md:pl-8 lg:pl-12 artist-content text-center md:text-left">
                   <div className="max-w-xs sm:max-w-sm md:max-w-lg mx-auto md:mx-0 px-2 md:px-0 relative">
-                    {/* Text Background Overlay */}
+                    {/* Text Background Overlay - Updated to earthen theme */}
                     <div
                       className="absolute inset-0 rounded-lg pointer-events-none"
                       style={{
                         background:
-                          "linear-gradient(135deg, rgba(22, 22, 22, 0.8) 0%, rgba(113, 0, 22, 0.6) 50%, rgba(22, 22, 22, 0.8) 100%)",
-                        backdropFilter: "blur(2px)",
+                          "linear-gradient(135deg, rgba(26, 26, 26, 0.85) 0%, rgba(90, 62, 54, 0.7) 50%, rgba(26, 26, 26, 0.85) 100%)",
+                        backdropFilter: "blur(3px)",
                       }}
                     ></div>
                     <div className="relative z-10 p-4 md:p-6">
                       <h3 className="artist-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif text-brand-white mb-2 leading-tight">
                         {artist.name}
                       </h3>
-                      <h4 className="artist-subtitle text-base sm:text-lg md:text-xl lg:text-2xl text-brand-red font-semibold mb-3 md:mb-4">
+                      <h4 className="artist-subtitle text-base sm:text-lg md:text-xl lg:text-2xl text-brand-earthen font-semibold mb-3 md:mb-4">
                         {artist.title}
                       </h4>
                       <p className="artist-description text-xs sm:text-sm md:text-base lg:text-lg text-brand-earthen-light leading-relaxed mb-4 md:mb-6">
@@ -545,7 +648,7 @@ const ParallaxArtistSection = () => {
                   <div
                     key={i}
                     className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      i === currentArtist ? "bg-brand-red scale-125" : "bg-brand-earthen-light opacity-50"
+                      i === currentArtist ? "bg-brand-earthen scale-125" : "bg-brand-earthen-light opacity-50"
                     }`}
                   />
                 ))}

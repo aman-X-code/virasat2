@@ -1,7 +1,7 @@
 'use client';
 
 import './globals.css';
-import { Playfair_Display, Lato } from 'next/font/google';
+import { Playfair_Display, Lato, Cormorant_Garamond, Cinzel } from 'next/font/google';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import LoadingScreen from '@/components/LoadingScreen';
@@ -19,6 +19,18 @@ const lato = Lato({
   variable: '--font-lato',
 });
 
+const cormorantGaramond = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-cormorant-garamond',
+});
+
+const cinzel = Cinzel({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-cinzel',
+});
+
 export default function RootLayout({
   children,
 }: {
@@ -34,7 +46,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${playfairDisplay.variable} ${lato.variable} font-sans bg-brand-white`}>
+      <body className={`${playfairDisplay.variable} ${lato.variable} ${cormorantGaramond.variable} ${cinzel.variable} font-sans bg-brand-white`}>
         {loading ? (
           <LoadingScreen onLoadingComplete={handleLoadingComplete} />
         ) : (

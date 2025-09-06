@@ -41,14 +41,27 @@ const AboutPage = () => {
         animate="animate"
         variants={fadeIn}
       >
-        <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-5xl font-serif text-brand-brown mb-6">Our Story</h1>
-          <p className="text-lg font-sans text-brand-earthen leading-relaxed mb-4">
-            Virasat was born from a simple yet profound idea: to create a bridge between generations through the timeless beauty of our culture. In a world of fleeting trends, we seek to be an anchor, reminding us of the rich tapestry of stories, art, and traditions that define us.
-          </p>
-          <p className="text-lg font-sans text-brand-earthen leading-relaxed">
-            Our journey began with a small group of enthusiasts and has since grown into a vibrant community of artists, historians, and patrons, all united by a shared love for our heritage. We believe that culture is a living entity, and through Virasat, we provide it a stage to breathe, evolve, and inspire.
-          </p>
+        <div className="text-center max-w-6xl mx-auto">
+          <div className="mb-12">
+            <h1 className="text-6xl md:text-7xl font-serif text-brand-brown mb-6 leading-tight">
+              About Virasat by REACH
+            </h1>
+            <div className="w-32 h-1 bg-gradient-to-r from-brand-red to-brand-brown mx-auto rounded-full"></div>
+          </div>
+          
+          <div className="text-xl font-sans text-brand-earthen leading-relaxed space-y-6 text-justify">
+            <p>
+              Born in 1995 in Dehradun, <span className="font-semibold text-brand-brown">REACH (Rural Entrepreneurship for Art & Cultural Heritage)</span> emerged to safeguard India's fading traditions at a time when modernization threatened to overshadow them. Its mission has been clear: preserve heritage, empower rural artists, and create sustainable cultural entrepreneurship.
+            </p>
+            
+            <p>
+              From this vision came <span className="font-semibold text-brand-red">Virāsat</span>, a festival that began as a small campus initiative and has grown into <span className="font-semibold text-brand-brown">Afro-Asia's largest celebration of art and culture</span>. Spanning fifteen days, it transforms Dehradun into a living museum where classical ragas blend with folk dances, handmade crafts find new admirers, and theatre, literature, and traditional cuisines bring communities together.
+            </p>
+            
+            <p>
+              Today, Virāsat is more than a festival — it is a <span className="font-semibold text-brand-red">movement of revival and pride</span>. Each year it welcomes over a million visitors, features more than four hundred performing artists and three hundred artisans from across India, and engages fifty thousand students from schools and colleges. With a media reach valued at over <span className="font-semibold text-brand-brown">₹22 crore</span>, it not only revives endangered art forms but also creates livelihoods, connects grassroots creators with global audiences, and fosters cultural pride among the youth. With nearly three decades of impact, Virāsat continues to shape the cultural economy while keeping India's living heritage alive, relevant, and celebrated.
+            </p>
+          </div>
         </div>
       </motion.section>
 

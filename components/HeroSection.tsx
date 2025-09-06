@@ -2,20 +2,33 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
-import MaskedDiv from '@/components/ui/masked-div';
 
 const HeroSection = () => {
-  const fadeIn = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-  };
-
-  const maskTypes = [
-    { type: 'type-1' as const, label: 'Classic' },
-    { type: 'type-2' as const, label: 'Modern' },
-    { type: 'type-3' as const, label: 'Artistic' },
-    { type: 'type-4' as const, label: 'Minimal' },
+  const gridItems = [
+    {
+      id: 1,
+      video: '/images/second.mp4',
+      className: 'col-span-1 row-span-2',
+      delay: 0.2
+    },
+    {
+      id: 2,
+      video: '/images/third.mp4',
+      className: 'col-span-1 row-span-1',
+      delay: 0.4
+    },
+    {
+      id: 3,
+      video: '/images/forth.mp4',
+      className: 'col-span-1 row-span-1',
+      delay: 0.6
+    },
+    {
+      id: 4,
+      video: '/images/secon.mp4',
+      className: 'col-span-1 row-span-2',
+      delay: 0.8
+    }
   ];
 
   return (
@@ -30,225 +43,190 @@ const HeroSection = () => {
         }}
       />
       
-      {/* Corner-Positioned Image Layout */}
-      <div className="relative z-10 w-full h-screen p-4 sm:p-6 lg:p-8 overflow-hidden">
-        <div className="h-full w-full max-w-7xl mx-auto relative">
-          
-          {/* Top Left Corner - Large Image */}
-          {/* <motion.div
-            className="absolute top-16 left-0 w-1/2 h-1/2 max-w-md max-h-96 transform -translate-x-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
-          >
-            <MaskedDiv
-              maskType="type-1"
-              className="w-full h-full"
-              size={1}
-              backgroundColor="transparent"
-            >
-              <Image
-                src="/images/first.png"
-                alt="Virasat Cultural Heritage - Top Left"
-                width={400}
-                height={400}
-                className="w-full h-full object-cover"
-              />
-            </MaskedDiv>
-            
-            {/* Floating decorative element */}
-            {/* <motion.div
-              className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full opacity-60"
-              animate={{ 
-                y: [0, -12, 0],
-                scale: [1, 1.2, 1]
-              }}
-              transition={{ 
-                duration: 3, 
-                repeat: Infinity, 
-                ease: "easeInOut",
-                delay: 0.3
-              }}
-            />
-          </motion.div> */}
-
-          {/* Top Right Corner - Medium Image */}
-          {/* <motion.div
-            className="absolute top-16 right-0 w-2/5 h-2/5 max-w-80 max-h-80 transform translate-x-12"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          >
-            <MaskedDiv
-              maskType="type-2"
-              className="w-full h-full"
-              size={1}
-              backgroundColor="transparent"
-            >
-              <video
-                className="w-full h-full object-cover"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                poster="/images/second-poster.jpg"
-              >
-                <source src="/images/second.mp4" type="video/mp4" />
-                <source src="/loader.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </MaskedDiv>
-            
-            <motion.div
-              className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full opacity-50"
-              animate={{ 
-                y: [0, -6, 0],
-                scale: [1, 1.1, 1]
-              }}
-              transition={{ 
-                duration: 2.2, 
-                repeat: Infinity, 
-                ease: "easeInOut",
-                delay: 0.6
-              }}
-            />
-          </motion.div> */}
-
-          {/* Bottom Left Corner - Large Image */}
-          {/* <motion.div
-            className="absolute bottom-0 left-0 w-1/2 h-1/2 max-w-md max-h-96 transform translate-y-24 -translate-x-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.8 }}
-          >
-            <MaskedDiv
-              maskType="type-3"
-              className="w-full h-full"
-              size={1}
-              backgroundColor="transparent"
-            >
-              <video
-                className="w-full h-full object-cover"
-                autoPlay
-                loop
-                muted
-                playsInline
-              >
-                <source src="/images/third.mp4" type="video/mp4" />
-                <source src="/loader.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </MaskedDiv>
-            
-            <motion.div
-              className="absolute -bottom-2 -left-2 w-5 h-5 bg-amber-600 rounded-full opacity-35"
-              animate={{ 
-                y: [0, -10, 0],
-                scale: [1, 1.15, 1]
-              }}
-              transition={{ 
-                duration: 3.2, 
-                repeat: Infinity, 
-                ease: "easeInOut",
-                delay: 1.4
-              }}
-            />
-          </motion.div> */}
-
-          {/* Bottom Right Corner - Medium Image */}
-          {/* <motion.div
-            className="absolute bottom-0 right-0 w-1/3 h-2/3 max-w-80 max-h-[36rem] transform translate-x-12 translate-y-80 scale-y-125"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.1 }}
-          >
-            <MaskedDiv
-              maskType="type-4"
-              className="w-full h-full"
-              size={1}
-              backgroundColor="transparent"
-            >
-              <video
-                className="w-full h-full object-cover"
-                autoPlay
-                loop
-                muted
-                playsInline
-              >
-                <source src="/images/forth.mp4" type="video/mp4" />
-                <source src="/loader.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </MaskedDiv>
-            
-            <motion.div
-              className="absolute -bottom-1 -left-1 w-4 h-4 bg-amber-600 rounded-full opacity-45"
-              animate={{ 
-                y: [0, 4, 0],
-                scale: [1, 0.9, 1]
-              }}
-              transition={{ 
-                duration: 2.3, 
-                repeat: Infinity, 
-                ease: "easeInOut",
-                delay: 2.0
-              }}
-            />
-          </motion.div> */}
-
-          {/* Center Black Area with Intro Image */}
+      {/* Bento Grid Container */}
+      <div className="relative z-10 w-full h-screen p-4 sm:p-6 lg:p-8 flex items-center justify-center">
+        <div className="w-full max-w-6xl mx-auto">
           <motion.div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[1200px] h-[600px] bg-black rounded-3xl flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.4 }}
+            className="grid grid-cols-4 grid-rows-2 gap-4 h-[80vh] max-h-[800px] w-full mt-16"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.1 }}
           >
-            <Image
-              src="/images/into-image.jpeg"
-              alt="Virasat Cultural Heritage - Intro"
-              width={1200}
-              height={600}
-              className="w-full h-full object-cover rounded-lg"
-            />
-          </motion.div>
+            {/* Grid Items with Videos */}
+            {gridItems.map((item) => (
+              <motion.div
+                key={item.id}
+                className={`${item.className} relative group cursor-pointer overflow-hidden rounded-2xl bg-black/20 backdrop-blur-sm border border-white/10 hover:border-white/30 transition-all duration-500`}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: item.delay }}
+              >
+                <video
+                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                >
+                  <source src={item.video} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                
+                {/* Overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Floating particles */}
+                <motion.div
+                  className="absolute top-2 right-2 w-2 h-2 bg-orange-400 rounded-full opacity-60"
+                  animate={{ 
+                    y: [0, -8, 0],
+                    scale: [1, 1.2, 1]
+                  }}
+                  transition={{ 
+                    duration: 2, 
+                    repeat: Infinity, 
+                    ease: "easeInOut",
+                    delay: item.delay
+                  }}
+                />
+              </motion.div>
+            ))}
 
+            {/* Center Logo - Virasat */}
+            <motion.div
+              className="col-span-2 row-span-2 relative flex items-center justify-center rounded-2xl overflow-hidden"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 1 }}
+            >
+              {/* Rangoli background pattern */}
+              <div className="absolute inset-0 opacity-30">
+                <motion.div 
+                  className="absolute inset-0 bg-[url('/images/rangoli.svg')] bg-center bg-no-repeat bg-contain"
+                  animate={{ rotate: 360 }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                />
+              </div>
+              
+              {/* Shiny Virasat Text */}
+              <motion.div
+                className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 pt-28"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 1.5 }}
+              >
+                <motion.h1
+                  className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-orange-400 via-amber-300 to-red-400 bg-clip-text text-transparent leading-tight mb-2"
+                  style={{
+                    fontFamily: 'var(--font-cinzel), "Cinzel", "Playfair Display", serif',
+                    backgroundSize: '200% 200%',
+                    fontWeight: '600',
+                    letterSpacing: '0.08em',
+                    textTransform: 'uppercase'
+                  }}
+                  animate={{
+                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                >
+                  Virasat
+                </motion.h1>
+                
+                <motion.p
+                  className="text-xl md:text-2xl text-white/90 font-light"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: 2 }}
+                >
+                  Heritage in the Hills
+                </motion.p>
+                
+                {/* Scroll Down Indicator */}
+                <motion.div
+                  className="mt-8 flex flex-col items-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 2.5 }}
+                >
+                  <motion.div
+                    className="w-6 h-10 border-2 border-orange-400 rounded-full flex justify-center"
+                    animate={{ 
+                      borderColor: ['rgba(251, 146, 60, 0.4)', 'rgba(251, 146, 60, 1)', 'rgba(251, 146, 60, 0.4)']
+                    }}
+                    transition={{ 
+                      duration: 2, 
+                      repeat: Infinity, 
+                      ease: "easeInOut" 
+                    }}
+                  >
+                    <motion.div
+                      className="w-1 h-3 bg-orange-400 rounded-full mt-2"
+                      animate={{ 
+                        y: [0, 12, 0],
+                        opacity: [0.4, 1, 0.4]
+                      }}
+                      transition={{ 
+                        duration: 2, 
+                        repeat: Infinity, 
+                        ease: "easeInOut",
+                        delay: 0.2
+                      }}
+                    />
+                  </motion.div>
+                  <motion.p
+                    className="text-sm text-orange-400/80 mt-4 font-light"
+                    animate={{ opacity: [0.6, 1, 0.6] }}
+                    transition={{ 
+                      duration: 2, 
+                      repeat: Infinity, 
+                      ease: "easeInOut",
+                      delay: 0.5
+                    }}
+                  >
+                    Scroll Down
+                  </motion.p>
+                </motion.div>
+              </motion.div>
+              
+              {/* Floating decorative elements */}
+              <motion.div
+                className="absolute top-4 left-4 w-3 h-3 bg-amber-400 rounded-full opacity-70"
+                animate={{ 
+                  y: [0, -10, 0],
+                  rotate: [0, 180, 360]
+                }}
+                transition={{ 
+                  duration: 4, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+              />
+              <motion.div
+                className="absolute bottom-4 right-4 w-2 h-2 bg-orange-400 rounded-full opacity-60"
+                animate={{ 
+                  y: [0, 8, 0],
+                  scale: [1, 1.3, 1]
+                }}
+                transition={{ 
+                  duration: 3, 
+                  repeat: Infinity, 
+                  ease: "easeInOut",
+                  delay: 1
+                }}
+              />
+            </motion.div>
+          </motion.div>
         </div>
       </div>
 
-      {/* Scroll Down Indicator */}
-      <motion.div
-        className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-white opacity-70 hover:opacity-100 transition-opacity cursor-pointer z-20"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 0.7, y: 0 }}
-        transition={{ duration: 1, delay: 2 }}
-      >
-        <span className="text-sm mb-2 font-light">Scroll Down</span>
-        <motion.div
-          className="w-5 h-8 border border-white rounded-full flex justify-center"
-          animate={{ 
-            y: [0, 7, 0]
-          }}
-          transition={{ 
-            duration: 2, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
-          }}
-        >
-          <motion.div
-            className="w-0.5 h-2.5 bg-white rounded-full mt-1.5"
-            animate={{ 
-              y: [0, 10, 0],
-              opacity: [1, 0, 1]
-            }}
-            transition={{ 
-              duration: 2, 
-              repeat: Infinity, 
-              ease: "easeInOut" 
-            }}
-          />
-        </motion.div>
-      </motion.div>
     </section>
   );
 };
