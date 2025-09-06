@@ -109,13 +109,9 @@ const HeroSection = () => {
           >
             {/* Grid Items with Videos */}
             {gridItems.map((item) => (
-              <motion.div
+              <div
                 key={item.id}
                 className={`${item.className} relative group cursor-pointer overflow-hidden rounded-2xl bg-black/20 backdrop-blur-sm border border-white/10 hover:border-white/30 transition-all duration-500`}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: item.delay }}
-                whileHover={{ scale: 1.05, rotateX: 10, rotateY: 10 }}
               >
                 <video
                   className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
@@ -132,20 +128,10 @@ const HeroSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 {/* Floating particles */}
-                <motion.div
+                <div
                   className="absolute top-2 right-2 w-2 h-2 bg-orange-400 rounded-full opacity-60"
-                  animate={{ 
-                    y: [0, -8, 0],
-                    scale: [1, 1.2, 1]
-                  }}
-                  transition={{ 
-                    duration: 2, 
-                    repeat: Infinity, 
-                    ease: "easeInOut",
-                    delay: item.delay
-                  }}
                 />
-              </motion.div>
+              </div>
             ))}
 
             {/* Center Logo - Virasat */}
