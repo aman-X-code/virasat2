@@ -21,16 +21,18 @@ const HeroCarousel = ({ items }: { items: { id: number; video: string }[] }) => 
       >
         {items.map((item) => (
           <SwiperSlide key={item.id}>
-            <video
-              className="w-full h-full object-cover"
-              autoPlay
-              loop
-              muted
-              playsInline
-            >
-              <source src={item.video} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <div className="w-full h-full rounded-3xl overflow-hidden">
+              <video
+                className="w-full h-full object-cover"
+                autoPlay
+                loop
+                muted
+                playsInline
+              >
+                <source src={item.video} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>

@@ -18,9 +18,19 @@ const HomePage = () => {
 
   return (
     <div className="text-brand-black">
+      {/* 1. Hero Section - Main landing area */}
       <HeroSection />
 
-      {/* About Reach Preview */}
+      {/* 2. Cultural Heritage Festival - Ticket Booking (HIGHEST PRIORITY) */}
+      <EventsSection />
+
+      {/* 3. Highlights/Key Features - Build trust and excitement */}
+      <HighlightsSection />
+
+      {/* 4. Featured Artists/Performers - Build credibility and star power */}
+      <ParallaxArtistSection />
+
+      {/* 5. About Virasat by REACH - Provide context and build trust */}
       <section className="py-20 px-6 container mx-auto bg-brand-white">
         <motion.div
           className="text-center max-w-6xl mx-auto"
@@ -44,10 +54,6 @@ const HomePage = () => {
             <p>
               From this vision came <span className="font-semibold text-brand-red">Virāsat</span>, a festival that began as a small campus initiative and has grown into <span className="font-semibold text-brand-brown">Afro-Asia's largest celebration of art and culture</span>. Spanning fifteen days, it transforms Dehradun into a living museum where classical ragas blend with folk dances, handmade crafts find new admirers, and theatre, literature, and traditional cuisines bring communities together.
             </p>
-            
-            <p>
-              Today, Virāsat is more than a festival — it is a <span className="font-semibold text-brand-red">movement of revival and pride</span>. Each year it welcomes over a million visitors, features more than four hundred performing artists and three hundred artisans from across India, and engages fifty thousand students from schools and colleges. With a media reach valued at over <span className="font-semibold text-brand-brown">₹22 crore</span>, it not only revives endangered art forms but also creates livelihoods, connects grassroots creators with global audiences, and fosters cultural pride among the youth. With nearly three decades of impact, Virāsat continues to shape the cultural economy while keeping India's living heritage alive, relevant, and celebrated.
-            </p>
           </div>
           
           <Link href="/about" className="text-brand-red font-semibold hover:underline">
@@ -56,11 +62,10 @@ const HomePage = () => {
         </motion.div>
       </section>
 
-      <ParallaxArtistSection />
-
+      {/* 6. Partners/Sponsors - Social proof and credibility */}
       <PartnersSection />
-      <HighlightsSection />
-      <EventsSection />
+
+      {/* 7. FAQ Section - Address concerns and remove barriers */}
       <FAQSection />
     </div>
   );

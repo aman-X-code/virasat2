@@ -70,34 +70,91 @@ const HeroSection = () => {
             <div className="relative w-full h-[80vh] max-h-[800px] mt-16">
               <HeroCarousel items={gridItems} />
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 pointer-events-none">
-                <motion.h1
-                  className="text-6xl font-bold bg-gradient-to-r from-orange-400 via-amber-300 to-red-400 bg-clip-text text-transparent leading-tight mb-2"
-                  style={{
-                    fontFamily: 'var(--font-cinzel), "Cinzel", "Playfair Display", serif',
-                    backgroundSize: '200% 200%',
-                    fontWeight: '600',
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase'
-                  }}
-                  animate={{
-                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                >
-                  Virasat
-                </motion.h1>
-                <motion.p
-                  className="text-xl text-white/90 font-light"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                {/* Clean & Elegant Text Container */}
+                <motion.div
+                  className="relative"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 0.5 }}
                 >
-                  Heritage in the Hills
-                </motion.p>
+                  {/* Subtle Background Glow */}
+                  <motion.div
+                    className="absolute inset-0 w-72 h-32 bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-red-500/20 rounded-2xl blur-xl"
+                    animate={{
+                      scale: [1, 1.05, 1],
+                      opacity: [0.3, 0.5, 0.3]
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                  
+                  {/* Main Text Container */}
+                  <motion.div
+                    className="relative px-8 py-6 rounded-2xl backdrop-blur-sm bg-black/20 border border-white/10"
+                    initial={{ scale: 0.95 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.7 }}
+                  >
+                    {/* VIRASAT Text */}
+                    <motion.h1
+                      className="text-5xl sm:text-6xl font-bold leading-tight mb-3"
+                      style={{
+                        fontFamily: 'var(--font-cinzel), "Cinzel", "Playfair Display", serif',
+                        fontWeight: '700',
+                        letterSpacing: '0.05em',
+                        textTransform: 'uppercase',
+                        background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #ea580c 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                        filter: 'drop-shadow(0 4px 20px rgba(251, 191, 36, 0.4))'
+                      }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 1, delay: 1 }}
+                    >
+                      Virasat
+                    </motion.h1>
+                    
+                    {/* Elegant Divider */}
+                    <motion.div
+                      className="w-16 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-4"
+                      initial={{ width: 0 }}
+                      animate={{ width: 64 }}
+                      transition={{ duration: 1.5, delay: 1.2 }}
+                    />
+                    
+                    {/* Subtitle */}
+                    <motion.p
+                      className="text-lg sm:text-xl text-white/95 font-light tracking-wide"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 1, delay: 1.4 }}
+                      style={{
+                        textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)'
+                      }}
+                    >
+                      Heritage in the Hills
+                    </motion.p>
+                  </motion.div>
+                  
+                  {/* Single Floating Accent */}
+                  <motion.div
+                    className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-amber-400 rounded-full"
+                    animate={{
+                      y: [0, -8, 0],
+                      opacity: [0.6, 1, 0.6]
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                </motion.div>
               </div>
             </div>
           ) : (
