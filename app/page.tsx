@@ -9,6 +9,7 @@ import PartnersSection from '@/components/PartnersSection';
 import HighlightsSection from '@/components/HighlightsSection';
 import ParallaxArtistSection from '@/components/ParallaxArtistSection';
 import EventsSection from '@/components/EventsSection';
+import GalleryPreview from '@/components/GalleryPreview';
 
 const HomePage = () => {
   const fadeIn = {
@@ -61,6 +62,8 @@ const HomePage = () => {
           </Link>
         </motion.div>
       </section>
+
+      <GalleryPreview />
 
       {/* 6. Partners/Sponsors - Social proof and credibility */}
       <PartnersSection />
