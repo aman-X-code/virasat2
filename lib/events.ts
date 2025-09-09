@@ -1,11 +1,23 @@
-"use client"
+// Events data management and API simulation
+export interface Event {
+  id: number;
+  day: string;
+  date: string;
+  title: string;
+  description: string;
+  image: string;
+  time: string;
+  location: string;
+  seats: string;
+  price: string;
+  featured: boolean;
+  category: string;
+  duration?: string;
+  ageRestriction?: string;
+}
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import { Clock, MapPin, Users, Star, Calendar, ArrowRight, Timer } from "lucide-react"
-import Link from "next/link"
-
-const events = [
+// All events data (in production, this would come from a database)
+export const allEvents: Event[] = [
   {
     id: 1,
     day: "Day 1",
@@ -790,458 +802,185 @@ const events = [
     featured: true,
     category: "Contemporary Music"
   }
-]
+];
 
-export const EventsSection = () => {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
-  const [currentPage, setCurrentPage] = useState(0)
-  const [currentMobileCard, setCurrentMobileCard] = useState(0)
-  const [isMobile, setIsMobile] = useState(false)
-  const [scrollContainerRef, setScrollContainerRef] = useState<HTMLDivElement | null>(null)
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  })
+// Day order mapping for sorting
+export const dayOrder: Record<string, number> = {
+  "Day 1": 1, "Day 2": 2, "Day 3": 3, "Day 4": 4, "Day 5": 5, "Day 6": 6, "Day 7": 7,
+  "Day 8": 8, "Day 9": 9, "Day 10": 10, "Day 11": 11, "Day 12": 12, "Day 13": 13,
+  "Day 14": 14, "Concluding Day": 15
+};
 
-  // Check if mobile on mount and resize
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024) // lg breakpoint
-    }
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
-
-  // Calculate total pages (4 cards per page for desktop, 2 for mobile)
-  const cardsPerPage = isMobile ? 2 : 4
-  const totalPages = Math.ceil(events.length / cardsPerPage)
-  
-  // Get current page events
-  const startIndex = isMobile ? 0 : currentPage * 4
-  const endIndex = isMobile ? events.length : startIndex + 4
-  const displayedEvents = isMobile ? events : events.slice(startIndex, endIndex)
-
-  // Navigation functions
-  const nextPage = () => {
-    if (isMobile) {
-      setCurrentMobileCard((prev) => Math.min(prev + 1, events.length - 2))
-    } else {
-      setCurrentPage((prev) => (prev + 1) % totalPages)
-    }
-  }
-
-  const prevPage = () => {
-    if (isMobile) {
-      setCurrentMobileCard((prev) => Math.max(prev - 1, 0))
-    } else {
-      setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages)
-    }
-  }
-
-  // Handle scroll position for mobile
-  const handleScroll = () => {
-    if (!isMobile || !scrollContainerRef) return
-    
-    const scrollLeft = scrollContainerRef.scrollLeft
-    const cardWidth = 304 // w-72 + gap = 288 + 16 = 304px
-    const currentCard = Math.round(scrollLeft / cardWidth)
-    setCurrentMobileCard(Math.min(Math.max(currentCard, 0), events.length - 1))
-  }
-
-  // Countdown timer for featured events
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const now = new Date().getTime()
-      const eventDate = new Date()
-      eventDate.setDate(eventDate.getDate() + 3) // 3 days from now
-      const distance = eventDate.getTime() - now
-
-      if (distance > 0) {
-        setTimeLeft({
-          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((distance % (1000 * 60)) / 1000)
-        })
-      }
-    }, 1000)
-
-    return () => clearInterval(timer)
-  }, [])
-
-  return (
-    <motion.section
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="pt-8 pb-16 px-4 sm:px-6 min-h-screen relative overflow-hidden"
-      style={{ 
-        backgroundColor: '#FFF7F5F4',
-        contain: 'layout style paint',
-        isolation: 'isolate'
-      }}
-    >
-      {/* Decorative Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Earthen floating elements */}
-        <motion.div
-          className="absolute top-20 left-10 w-20 h-20 bg-brand-earthen/20 rounded-full"
-          animate={{ 
-            y: [0, -20, 0],
-            scale: [1, 1.1, 1],
-            rotate: [0, 180, 360]
-          }}
-          transition={{ 
-            duration: 6, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
-          }}
-        />
-        <motion.div
-          className="absolute top-40 right-20 w-16 h-16 bg-brand-brown/15 rounded-full"
-          animate={{ 
-            y: [0, 15, 0],
-            x: [0, 10, 0],
-            rotate: [0, -180, -360]
-          }}
-          transition={{ 
-            duration: 8, 
-            repeat: Infinity, 
-            ease: "easeInOut",
-            delay: 1
-          }}
-        />
-        <motion.div
-          className="absolute bottom-40 left-20 w-12 h-12 bg-brand-earthen-light/25 rounded-full"
-          animate={{ 
-            y: [0, -10, 0],
-            scale: [1, 1.2, 1]
-          }}
-          transition={{ 
-            duration: 4, 
-            repeat: Infinity, 
-            ease: "easeInOut",
-            delay: 2
-          }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-10 w-24 h-24 bg-brand-earthen/10 rounded-full"
-          animate={{ 
-            scale: [1, 1.3, 1],
-            rotate: [0, 90, 180, 270, 360]
-          }}
-          transition={{ 
-            duration: 10, 
-            repeat: Infinity, 
-            ease: "linear"
-          }}
-        />
-        
-        {/* Subtle geometric patterns */}
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-2 h-2 bg-brand-brown/30 rounded-full"
-          animate={{ 
-            scale: [1, 2, 1],
-            opacity: [0.3, 0.8, 0.3]
-          }}
-          transition={{ 
-            duration: 3, 
-            repeat: Infinity, 
-            ease: "easeInOut",
-            delay: 0.5
-          }}
-        />
-        <motion.div
-          className="absolute top-3/4 right-1/3 w-1 h-1 bg-brand-earthen/40 rounded-full"
-          animate={{ 
-            scale: [1, 3, 1],
-            opacity: [0.4, 0.9, 0.4]
-          }}
-          transition={{ 
-            duration: 4, 
-            repeat: Infinity, 
-            ease: "easeInOut",
-            delay: 1.5
-          }}
-        />
-        
-        {/* Subtle grid pattern overlay */}
-        <div 
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(139, 120, 109, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(139, 120, 109, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '50px 50px'
-          }}
-        />
-      </div>
-        <div className="container mx-auto max-w-[140rem] relative z-10">
-        {/* Header Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center mb-12 sm:mb-16"
-        >
-          <motion.h2 
-            className="text-3xl sm:text-4xl md:text-5xl font-serif mb-4 sm:mb-6"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <span className="text-brand-black">Cultural Heritage </span>
-            <span className="text-brand-brown font-bold">Festival</span>
-          </motion.h2>
-          
-          <motion.p 
-            className="text-base sm:text-lg md:text-xl text-brand-earthen max-w-3xl mx-auto leading-relaxed px-2"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
-            Book your preferred events and immerse yourself in three days of authentic Indian cultural experiences.
-          </motion.p>
-        </motion.div>
-
-
-        {/* Events Grid with Navigation */}
-        <div className="relative">
-          {/* Shadow Containment Wrapper */}
-          <div className="relative overflow-hidden rounded-3xl" style={{ contain: 'layout style paint' }}>
-            {/* Main Container with Side Navigation */}
-            <div className="flex items-center gap-4 sm:gap-6 lg:gap-8 p-2 sm:p-4">
-            {/* Left Navigation Button - only show on desktop when not on first page */}
-            {!isMobile && currentPage > 0 && (
-              <motion.button
-                onClick={prevPage}
-                className="flex items-center justify-center w-14 h-14 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-brand-red group flex-shrink-0"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <svg
-                  className="w-6 h-6 transition-transform duration-300 group-hover:-translate-x-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </motion.button>
-            )}
-
-            {/* Spacer for when left button is not shown */}
-            {!isMobile && currentPage === 0 && <div className="w-12 sm:w-14 h-12 sm:h-14 flex-shrink-0" />}
-
-            {/* Events Grid - native scroll on mobile, 4 cards on desktop */}
-            <div 
-              ref={setScrollContainerRef}
-              className={`flex-1 ${isMobile ? 'flex overflow-x-auto overflow-y-hidden scrollbar-hide px-4' : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'} gap-4 sm:gap-6 lg:gap-8`}
-              onScroll={handleScroll}
-              style={{
-                scrollSnapType: isMobile ? 'x mandatory' : 'none',
-                scrollBehavior: isMobile ? 'smooth' : 'auto',
-                WebkitOverflowScrolling: isMobile ? 'touch' : 'auto',
-                contain: 'layout style paint',
-                isolation: 'isolate'
-              }}
-            >
-            {(isMobile ? events : displayedEvents).map((event, index) => (
-              <motion.div
-                key={`${event.id}-${isMobile ? currentMobileCard : currentPage}`}
-                initial={isMobile ? false : { opacity: 0, y: 50 }}
-                animate={isMobile ? false : { opacity: 1, y: 0 }}
-                transition={isMobile ? {} : { duration: 0.6, delay: index * 0.1 }}
-                className={`group relative bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl ${isMobile ? 'mx-2' : ''} transition-all duration-300 ease-out overflow-hidden flex flex-col ${isMobile ? 'flex-shrink-0 w-72' : ''}`}
-                style={{
-                  scrollSnapAlign: isMobile ? 'start' : 'none',
-                  filter: 'drop-shadow(0 0 0 transparent)'
-                }}
-                onMouseEnter={() => setHoveredCard(event.id)}
-                onMouseLeave={() => setHoveredCard(null)}
-              >
-                {/* Inner white card container */}
-                <div className="bg-white rounded-2xl m-1 flex flex-col flex-1 overflow-hidden">
-                {/* Event Image */}
-                <div className="relative h-48 sm:h-52 overflow-hidden">
-                   <motion.img
-                     src={event.image}
-                     alt={event.title}
-                     className="w-full h-full object-cover"
-                   />
-                  
-                  {/* Overlay Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  
-                  {/* Day Badge */}
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-brand-black text-white px-3 py-1 rounded-full text-sm font-medium">
-                      {event.day}
-                    </span>
-                  </div>
-                  
-                  {/* Featured Badge */}
-                  {event.featured && (
-                    <div className="absolute top-4 right-4 flex flex-col gap-2">
-                      <span className="bg-brand-red text-white px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1">
-                        <Star className="w-3 h-3 fill-current" />
-                        Featured
-                      </span>
-                      {/* Countdown Timer */}
-                      <div className="bg-black/80 backdrop-blur-sm text-white px-2 py-1 rounded-lg text-xs">
-                        <div className="flex items-center gap-1">
-                          <Timer className="w-3 h-3" />
-                          <span>{timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m</span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Event Content */}
-                <div className="p-4 sm:p-5 flex flex-col flex-grow">
-                   {/* Fixed Height Title Section */}
-                   <div className="h-14 sm:h-16 mb-3 flex items-start">
-                     <h3 className="text-base sm:text-lg md:text-xl font-bold text-brand-black font-serif group-hover:text-brand-red transition-colors duration-300 line-clamp-2 leading-tight">
-                       {event.title}
-                     </h3>
-                   </div>
-                  
-                  {/* Fixed Height Description Section */}
-                  <div className="h-10 sm:h-12 mb-3 sm:mb-4 flex items-start">
-                    <p className="text-brand-earthen text-xs sm:text-sm leading-relaxed line-clamp-2">
-                      {event.description}
-                    </p>
-                  </div>
-                  
-                  {/* Fixed Height Separator Section */}
-                  <div className="h-5 sm:h-6 mb-3 sm:mb-4 flex items-center">
-                    <div className="w-12 sm:w-16 h-1 bg-brand-red rounded-full" />
-                  </div>
-                  
-                   {/* Event Details */}
-                   <div className="space-y-1.5 sm:space-y-2 mb-4 sm:mb-5 flex-grow">
-                     <div className="flex items-center gap-2 text-xs sm:text-sm text-brand-earthen group-hover:text-brand-red transition-colors duration-300">
-                       <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-red flex-shrink-0" />
-                       <span>{event.time}</span>
-                     </div>
-                     <div className="flex items-center gap-2 text-xs sm:text-sm text-brand-earthen group-hover:text-brand-red transition-colors duration-300">
-                       <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-red flex-shrink-0" />
-                       <span>{event.location}</span>
-                     </div>
-                     <div className="flex items-center gap-2 text-xs sm:text-sm text-brand-earthen group-hover:text-brand-red transition-colors duration-300">
-                       <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-red flex-shrink-0" />
-                       <span>{event.seats}</span>
-                     </div>
-                   </div>
-                  
-                  {/* Price and Buy Button */}
-                  <div className="flex items-center justify-between gap-2 sm:gap-3 mt-auto px-1">
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-lg sm:text-xl md:text-2xl font-bold text-brand-black leading-none">{event.price}</span>
-                      <span className="text-xs text-brand-earthen-light leading-tight whitespace-nowrap">per person</span>
-                    </div>
-                    
-                    <Link href={`/events/${event.id}/booking`}>
-                      <motion.button
-                        className="bg-brand-red hover:bg-brand-red-dark text-white px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-1 sm:gap-1.5 group/btn flex-shrink-0 h-8 sm:h-9"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => {
-                          console.log('Home page Book Now clicked for event:', event.id, event.title);
-                          console.log('Home page Booking URL:', `/events/${event.id}/booking`);
-                        }}
-                      >
-                        <span className="text-xs sm:text-sm whitespace-nowrap">Book Now</span>
-                        <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
-                      </motion.button>
-                    </Link>
-                  </div>
-                </div>
-                </div>
-
-              </motion.div>
-            ))}
-            </div>
-
-            {/* Right Navigation Button - only show on desktop when not on last page */}
-            {!isMobile && currentPage < totalPages - 1 && (
-              <motion.button
-                onClick={nextPage}
-                className="flex items-center justify-center w-14 h-14 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-brand-red group flex-shrink-0"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <svg
-                  className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </motion.button>
-            )}
-
-            {/* Spacer for when right button is not shown */}
-            {!isMobile && currentPage === totalPages - 1 && <div className="w-12 sm:w-14 h-12 sm:h-14 flex-shrink-0" />}
-            </div>
-          </div>
-
-          {/* Page Indicator - only show on desktop */}
-          {!isMobile && (
-            <div className="flex justify-center mt-6 sm:mt-8 space-x-2">
-              {Array.from({ length: totalPages }, (_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentPage(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentPage
-                      ? 'bg-brand-red scale-125' 
-                      : 'bg-gray-300 hover:bg-gray-400'
-                  }`}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-
-
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.3 }}
-           className="text-center mt-8 sm:mt-12"
-        >
-          <Link href="/events">
-            <motion.button
-              className="bg-gradient-to-r from-brand-red to-brand-red-dark hover:from-brand-red-dark hover:to-brand-brown text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              View All Events
-            </motion.button>
-          </Link>
-        </motion.div>
-      </div>
-    </motion.section>
-  )
+// API simulation functions
+export interface EventsResponse {
+  events: Event[];
+  totalCount: number;
+  hasMore: boolean;
+  currentPage: number;
+  totalPages: number;
 }
 
-export default EventsSection
+export interface EventsFilters {
+  category?: string;
+  day?: string;
+  featured?: boolean;
+  search?: string;
+}
+
+// Simulate API delay
+const simulateApiDelay = (ms: number = 500) => 
+  new Promise(resolve => setTimeout(resolve, ms));
+
+// Get events with pagination
+export async function getEvents(
+  page: number = 1,
+  pageSize: number = 8, // Show 1-2 days worth of events
+  filters: EventsFilters = {}
+): Promise<EventsResponse> {
+  await simulateApiDelay(300); // Simulate API call
+
+  let filteredEvents = [...allEvents];
+
+  // Apply filters
+  if (filters.category && filters.category !== "All") {
+    filteredEvents = filteredEvents.filter(event => event.category === filters.category);
+  }
+
+  if (filters.day && filters.day !== "All") {
+    filteredEvents = filteredEvents.filter(event => event.day === filters.day);
+  }
+
+  if (filters.featured !== undefined) {
+    filteredEvents = filteredEvents.filter(event => event.featured === filters.featured);
+  }
+
+  if (filters.search) {
+    const searchLower = filters.search.toLowerCase();
+    filteredEvents = filteredEvents.filter(event =>
+      event.title.toLowerCase().includes(searchLower) ||
+      event.description.toLowerCase().includes(searchLower) ||
+      event.category.toLowerCase().includes(searchLower)
+    );
+  }
+
+  // Sort by day order
+  filteredEvents.sort((a, b) => {
+    const dayA = dayOrder[a.day] || 999;
+    const dayB = dayOrder[b.day] || 999;
+    return dayA - dayB;
+  });
+
+  const totalCount = filteredEvents.length;
+  const totalPages = Math.ceil(totalCount / pageSize);
+  const startIndex = (page - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const events = filteredEvents.slice(startIndex, endIndex);
+
+  return {
+    events,
+    totalCount,
+    hasMore: page < totalPages,
+    currentPage: page,
+    totalPages
+  };
+}
+
+// Get events by day with pagination
+export async function getEventsByDay(
+  page: number = 1,
+  daysPerPage: number = 2, // Show 1-2 days at a time
+  filters: EventsFilters = {}
+): Promise<EventsResponse & { eventsByDay: Record<string, Event[]> }> {
+  await simulateApiDelay(300);
+
+  let filteredEvents = [...allEvents];
+
+  // Apply filters
+  if (filters.category && filters.category !== "All") {
+    filteredEvents = filteredEvents.filter(event => event.category === filters.category);
+  }
+
+  if (filters.day && filters.day !== "All") {
+    filteredEvents = filteredEvents.filter(event => event.day === filters.day);
+  }
+
+  if (filters.featured !== undefined) {
+    filteredEvents = filteredEvents.filter(event => event.featured === filters.featured);
+  }
+
+  if (filters.search) {
+    const searchLower = filters.search.toLowerCase();
+    filteredEvents = filteredEvents.filter(event =>
+      event.title.toLowerCase().includes(searchLower) ||
+      event.description.toLowerCase().includes(searchLower) ||
+      event.category.toLowerCase().includes(searchLower)
+    );
+  }
+
+  // Group events by day
+  const eventsByDay: Record<string, Event[]> = {};
+  filteredEvents.forEach(event => {
+    if (!eventsByDay[event.day]) {
+      eventsByDay[event.day] = [];
+    }
+    eventsByDay[event.day].push(event);
+  });
+
+  // Get unique days and sort them
+  const uniqueDays = Object.keys(eventsByDay).sort((a, b) => {
+    const dayA = dayOrder[a] || 999;
+    const dayB = dayOrder[b] || 999;
+    return dayA - dayB;
+  });
+
+  // Paginate days
+  const totalDays = uniqueDays.length;
+  const totalPages = Math.ceil(totalDays / daysPerPage);
+  const startDayIndex = (page - 1) * daysPerPage;
+  const endDayIndex = startDayIndex + daysPerPage;
+  const paginatedDays = uniqueDays.slice(startDayIndex, endDayIndex);
+
+  // Get events for paginated days
+  const paginatedEventsByDay: Record<string, Event[]> = {};
+  const allEventsInPage: Event[] = [];
+  
+  paginatedDays.forEach(day => {
+    paginatedEventsByDay[day] = eventsByDay[day];
+    allEventsInPage.push(...eventsByDay[day]);
+  });
+
+  return {
+    events: allEventsInPage,
+    eventsByDay: paginatedEventsByDay,
+    totalCount: filteredEvents.length,
+    hasMore: page < totalPages,
+    currentPage: page,
+    totalPages
+  };
+}
+
+// Get all unique categories
+export function getCategories(): string[] {
+  const categories = new Set(allEvents.map(event => event.category));
+  return ["All", ...Array.from(categories).sort()];
+}
+
+// Get all unique days
+export function getDays(): string[] {
+  const days = new Set(allEvents.map(event => event.day));
+  return ["All", ...Array.from(days).sort((a, b) => {
+    const dayA = dayOrder[a] || 999;
+    const dayB = dayOrder[b] || 999;
+    return dayA - dayB;
+  })];
+}
+
+// Get featured events
+export function getFeaturedEvents(): Event[] {
+  return allEvents.filter(event => event.featured);
+}
+
+// Get event by ID
+export function getEventById(id: number): Event | undefined {
+  return allEvents.find(event => event.id === id);
+}

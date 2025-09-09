@@ -1,9 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import SmallLoader from '@/components/SmallLoader';
+import { useLoading } from '@/hooks/useLoading';
 
 const blogPosts = [
   {
@@ -33,14 +35,31 @@ const blogPosts = [
 ];
 
 const BlogsPage = () => {
+  const { isLoading, withLoading } = useLoading(true);
+
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.6 },
   };
 
+  // Simulate data loading
+  useEffect(() => {
+    const loadBlogData = async () => {
+      await withLoading(async () => {
+        // Simulate API call to fetch blog posts
+        await new Promise(resolve => setTimeout(resolve, 1200));
+      });
+    };
+    
+    loadBlogData();
+  }, [withLoading]);
+
   return (
-    <div className="bg-brand-white text-brand-black pt-28">
+    <>
+      <SmallLoader isLoading={isLoading} />
+      {!isLoading && (
+        <div className="bg-brand-white text-brand-black pt-28">
       <section className="py-20 px-6 container mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-5xl font-serif text-brand-brown mb-6">News & Insights</h1>
@@ -87,7 +106,9 @@ const BlogsPage = () => {
           ))}
         </div>
       </section>
-    </div>
+        </div>
+      )}
+    </>
   );
 };
 

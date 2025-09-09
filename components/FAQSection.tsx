@@ -39,12 +39,13 @@ export const FAQSection = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="py-20 px-6 bg-brand-white"
+      className="pt-4 pb-20 px-6" style={{ backgroundColor: '#FFF7F5F4' }}
     >
       <div className="container mx-auto max-w-4xl">
-        <h2 className="text-4xl md:text-5xl font-serif text-center text-brand-brown mb-4">
+        <h2 className="text-4xl md:text-5xl font-serif text-center text-brand-brown mb-6">
           Frequently Asked Questions
         </h2>
+        <div className="w-24 h-1 bg-gradient-to-r from-brand-red to-brand-brown mx-auto rounded-full mb-6"></div>
         <p className="text-center text-lg text-brand-earthen mb-12">
           Answers to some of the common questions we receive.
         </p>

@@ -2,10 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hide scrollbar for horizontal scrolling */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-start-rgb: 245, 241, 232;
+  --background-end-rgb: 245, 241, 232;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,11 +27,11 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 45 20% 95%;
     --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
+    --card: 45 20% 98%;
     --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
+    --popover: 45 20% 98%;
     --popover-foreground: 0 0% 3.9%;
     --primary: 0 0% 9%;
     --primary-foreground: 0 0% 98%;
@@ -75,9 +84,16 @@
 @layer base {
   * {
     @apply border-gray-200;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
+    -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important;
+    outline: none !important;
   }
   body {
-    @apply bg-white text-gray-900;
+    background-image: url("/images/textured-background.svg");
+    background-size: 200px 200px;
+    background-repeat: repeat;
+    background-color: #f5f1e8;
+    @apply text-gray-900;
     overflow-x: hidden;
   }
   html {
@@ -289,4 +305,102 @@
 
 .float-animation {
   animation: float 3s ease-in-out infinite;
+}
+
+/* Hide scrollbar for mobile carousel */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
+/* Custom Donate Button Style - Golden Gradient */
+.btn-donate {
+  width: 110px;
+  height: 36px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(to right,#77530a,#ffd277,#77530a,#77530a,#ffd277,#77530a);
+  background-size: 250%;
+  background-position: left;
+  color: #ffd277;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 1s;
+  overflow: hidden;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.btn-donate::before {
+  position: absolute;
+  content: "DONATE";
+  color: #ffd277;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 97%;
+  height: 90%;
+  border-radius: 8px;
+  transition-duration: 1s;
+  background-color: rgba(0, 0, 0, 0.842);
+  background-size: 200%;
+}
+
+.btn-donate:hover {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.btn-donate:hover::before {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.btn-donate:active {
+  transform: scale(0.95);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-donate {
+    transition: linear;
+  }
+  .btn-donate::before {
+    transition: linear;
+  }
+}
+
+/* Shine Animation for Get Tickets */
+.shine {
+  font-size: 1em;
+  font-weight: 600;
+  color: transparent;
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #ffffff 35%,
+    #ffd700 50%,
+    #ffffff 65%,
+    #ffffff 100%
+  );
+  background-size: 200% 100%;
+  background-position: -200% 0;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shine 3s ease-in-out infinite;
+  text-shadow: 0 0 0 transparent;
+}
+
+@keyframes shine {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }

@@ -55,7 +55,7 @@ export const PartnersSection = () => {
     };
   }, []);
 
-  const sectionBgColor = '#f7f5f4'; // Calculated from brand-white + brand-black/5
+  const sectionBgColor = '#FFF7F5F4'; // Matching Cultural Heritage Festival background
 
   return (
     <motion.section
@@ -63,13 +63,14 @@ export const PartnersSection = () => {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-      className="py-20"
+      className="pt-4 pb-20"
       style={{ backgroundColor: sectionBgColor }}
     >
       <div className="container mx-auto">
-        <h2 className="text-4xl md:text-5xl font-serif text-center text-brand-brown mb-12">
+        <h2 className="text-4xl md:text-5xl font-serif text-center text-brand-brown mb-6">
           Our Esteemed Partners
         </h2>
+        <div className="w-24 h-1 bg-gradient-to-r from-brand-red to-brand-brown mx-auto rounded-full mb-12"></div>
         <div ref={wrapperRef} className="relative w-full overflow-hidden">
           <div
             ref={marqueeRef}

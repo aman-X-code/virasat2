@@ -41,7 +41,7 @@ const ArtistSection = () => {
   };
 
   return (
-    <section className="py-20 px-6 container mx-auto relative">
+    <section className="pt-4 pb-20 px-6 container mx-auto relative">
       <AnimatedArtistBackground />
       <motion.div
         className="text-center max-w-3xl mx-auto"
@@ -50,7 +50,7 @@ const ArtistSection = () => {
         variants={fadeIn}
         viewport={{ once: true }}
       >
-        <h2 className="text-4xl font-serif text-brand-brown mb-4">Our Esteemed Artists</h2>
+        <h2 className="text-4xl md:text-5xl font-serif text-brand-brown mb-6">Our Esteemed Artists</h2>
         <p className="text-lg font-sans text-brand-earthen mb-8">
           We are honored to have hosted some of the most renowned artists from around the world.
         </p>

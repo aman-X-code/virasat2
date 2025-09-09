@@ -9,8 +9,8 @@ import { usePathname } from "next/navigation"
 
 const navItems = [
   { name: "Home", href: "/" },
+  { name: "Get Tickets", href: "/events" },
   { name: "About Reach", href: "/about" },
-  { name: "Team of Reach", href: "/team" },
   { name: "Gallery", href: "/gallery" },
   { name: "News/Blogs", href: "/blogs" },
   { name: "Contact Us", href: "/contact" },
@@ -69,29 +69,25 @@ const Header = () => {
         <nav className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => {
             const isActive = pathname === item.href
+            const isGetTickets = item.name === "Get Tickets"
             return (
               <Link
                 key={item.name}
                 href={item.href}
                 className={`transition-colors duration-300 font-sans ${
-                  isActive ? "text-brand-red font-semibold" : "text-brand-white hover:text-brand-red"
-                }`}
+                  isActive && isGetTickets ? "text-yellow-400 font-semibold" : isActive ? "text-brand-red font-semibold" : isGetTickets ? "text-brand-white hover:text-yellow-400" : "text-brand-white hover:text-brand-red"
+                } ${isGetTickets && !isActive ? "shine" : ""}`}
               >
                 {item.name}
               </Link>
             )
           })}
-          <Link href="/travel" passHref>
+          <Link href="/donate" passHref>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-6 py-2 rounded-full font-sans font-semibold transition-colors duration-300 ${
-                pathname === "/travel"
-                  ? "bg-brand-red-dark text-brand-white"
-                  : "bg-brand-red text-brand-white hover:bg-brand-red-dark"
-              }`}
+              className="btn-donate"
             >
-              Travel
             </motion.button>
           </Link>
         </nav>
@@ -105,47 +101,104 @@ const Header = () => {
       </div>
 
       {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <motion.nav
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-brand-black bg-opacity-95 px-6 pb-6"
+      <motion.nav
+        initial={false}
+        animate={{
+          height: isMenuOpen ? "auto" : 0,
+          opacity: isMenuOpen ? 1 : 0,
+        }}
+        transition={{
+          duration: 0.3,
+          ease: [0.25, 0.46, 0.45, 0.94],
+        }}
+        className="md:hidden overflow-hidden bg-brand-black bg-opacity-95"
+      >
+        <motion.div
+          initial={false}
+          animate={{
+            y: isMenuOpen ? 0 : -20,
+          }}
+          transition={{
+            duration: 0.3,
+            delay: isMenuOpen ? 0.1 : 0,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
+          className="px-6 pb-6"
         >
-          <ul className="flex flex-col space-y-4">
-            {navItems.map((item) => {
+          <ul className="flex flex-col space-y-0">
+            {navItems.map((item, index) => {
               const isActive = pathname === item.href
+              const isGetTickets = item.name === "Get Tickets"
               return (
-                <li key={item.name}>
+                <motion.li
+                  key={item.name}
+                  initial={false}
+                  animate={{
+                    opacity: isMenuOpen ? 1 : 0,
+                    x: isMenuOpen ? 0 : -20,
+                  }}
+                  transition={{
+                    duration: 0.2,
+                    delay: isMenuOpen ? 0.15 + index * 0.05 : 0,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                  }}
+                  className="relative"
+                >
                   <Link
                     href={item.href}
                     onClick={() => setIsMenuOpen(false)}
-                    className={`block py-2 text-lg font-sans transition-colors duration-300 ${
-                      isActive ? "text-brand-red font-semibold" : "text-brand-white hover:text-brand-red"
-                    }`}
+                    className={`block py-4 text-lg font-sans transition-colors duration-300 text-center ${
+                      isActive && isGetTickets ? "text-yellow-400 font-semibold" : isActive ? "text-brand-red font-semibold" : isGetTickets ? "text-brand-white hover:text-yellow-400" : "text-brand-white hover:text-brand-red"
+                    } ${isGetTickets && !isActive ? "shine" : ""}`}
                   >
                     {item.name}
                   </Link>
-                </li>
+                  {/* Faded line separator */}
+                  {index < navItems.length - 1 && (
+                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-brand-white/20 to-transparent"></div>
+                  )}
+                </motion.li>
               )
             })}
-            <li>
-              <Link href="/travel" passHref>
+            {/* Separator before donate button */}
+            <motion.div
+              initial={false}
+              animate={{
+                opacity: isMenuOpen ? 1 : 0,
+              }}
+              transition={{
+                duration: 0.2,
+                delay: isMenuOpen ? 0.15 + navItems.length * 0.05 : 0,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
+              className="w-3/4 h-px bg-gradient-to-r from-transparent via-brand-white/20 to-transparent mx-auto my-4"
+            ></motion.div>
+            <motion.li
+              initial={false}
+              animate={{
+                opacity: isMenuOpen ? 1 : 0,
+                x: isMenuOpen ? 0 : -20,
+              }}
+              transition={{
+                duration: 0.2,
+                delay: isMenuOpen ? 0.15 + navItems.length * 0.05 + 0.05 : 0,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
+              className="flex justify-center"
+            >
+              <Link href="/donate" passHref>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`w-full mt-4 px-6 py-3 rounded-full font-sans font-semibold transition-colors duration-300 ${
-                    pathname === "/travel"
-                      ? "bg-brand-red-dark text-brand-white"
-                      : "bg-brand-red text-brand-white hover:bg-brand-red-dark"
-                  }`}
+                  className="btn-donate mt-2"
+                  onClick={() => setIsMenuOpen(false)}
                 >
-                  Travel
                 </motion.button>
               </Link>
-            </li>
+            </motion.li>
           </ul>
-        </motion.nav>
-      )}
+        </motion.div>
+      </motion.nav>
     </motion.header>
   )
 }

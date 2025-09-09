@@ -32,7 +32,7 @@ const GalleryPreview = () => {
       opacity: 1,
       rotateX: 0,
       transition: {
-        type: 'spring',
+        type: 'spring' as const,
         stiffness: 100,
         damping: 10,
       },
@@ -40,7 +40,18 @@ const GalleryPreview = () => {
   };
 
   return (
-    <section className="py-20 px-6 container mx-auto bg-brand-white">
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="pt-8 pb-16 px-4 sm:px-6 container mx-auto"
+      style={{ 
+        backgroundColor: '#FFF7F5F4',
+        contain: 'layout style paint',
+        isolation: 'isolate'
+      }}
+    >
       <motion.div
         className="text-center max-w-6xl mx-auto"
         initial="hidden"
@@ -55,19 +66,19 @@ const GalleryPreview = () => {
         }}
       >
         <motion.h2
-          className="text-5xl md:text-6xl font-serif text-brand-brown mb-6 leading-tight"
+          className="text-3xl sm:text-4xl md:text-5xl font-serif text-brand-brown mb-4 sm:mb-6 leading-tight"
           variants={itemVariants}
         >
-          📸 Festival Memories Through the Years
+          Festival Memories Through the Years
         </motion.h2>
         <motion.div
-          className="w-24 h-1 bg-gradient-to-r from-brand-red to-brand-brown mx-auto rounded-full mb-12"
+          className="w-20 sm:w-24 h-1 bg-gradient-to-r from-brand-red to-brand-brown mx-auto rounded-full mb-8 sm:mb-12"
           variants={itemVariants}
         ></motion.div>
       </motion.div>
 
       <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -76,7 +87,7 @@ const GalleryPreview = () => {
         {galleryItems.map((item, index) => (
           <motion.div
             key={index}
-            className="group relative rounded-lg overflow-hidden shadow-lg border-4 border-brand-earthen-light"
+            className="group relative rounded-lg overflow-hidden shadow-lg border-4 border-brand-earthen-light aspect-square"
             variants={itemVariants}
             whileHover={{
               scale: 1.03,
@@ -94,6 +105,7 @@ const GalleryPreview = () => {
                 width={500}
                 height={500}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                style={{ objectFit: 'cover' }}
               />
             ) : (
               <video
@@ -103,6 +115,7 @@ const GalleryPreview = () => {
                 loop
                 muted
                 playsInline
+                style={{ objectFit: 'cover' }}
               />
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -111,19 +124,19 @@ const GalleryPreview = () => {
       </motion.div>
 
       <motion.div
-        className="text-center mt-12"
+        className="text-center mt-8 sm:mt-12"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
         viewport={{ once: true }}
       >
         <Link href="/gallery">
-          <Button size="lg" className="bg-brand-red text-white hover:bg-brand-red-dark text-lg font-semibold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105">
+          <Button size="lg" className="bg-brand-red text-white hover:bg-brand-red-dark text-base sm:text-lg font-semibold py-3 px-6 sm:px-8 rounded-full shadow-lg transition-transform transform hover:scale-105">
             View Full Gallery &rarr;
           </Button>
         </Link>
       </motion.div>
-    </section>
+    </motion.section>
   );
 };
 
